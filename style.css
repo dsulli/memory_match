@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #333;
+}
+
+header {
+    width: 100%;
+    height: 10vh;
+    color: #DDD;
+    margin: 0;
+}
+
+nav li, nav {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+.stats, .shop {
+    width: 20%;
+    height: 90vh;
+
+}
+
+.stats {
+    float: left;
+}
+
+.shop {
+    float: right;
+}
+
+.stats-container, .shop-container {
+}
+
+.game-area {
+    width: 60%;
+    height: 90vh;
+    float: left;
+    text-align: center;
+    padding-top: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card-row {
+
+}
+
+.card {
+    position: relative;
+    display: inline-block;
+    max-width: 16%;
+}
+
+.card img {
+    width: 100%;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.card:hover .back {
+    display: none;
+}
