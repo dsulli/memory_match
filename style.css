@@ -5,7 +5,7 @@
 body {
     background-color: #1D2D5B;
     background-position: top;
-    background-image: url('images/lulu.jpg');
+    background-image: url('images/tempbackground.jpg');
     background-size: cover;
 }
 
@@ -202,7 +202,6 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
-    display: none;
 }
 /*
 .card:hover .back {
