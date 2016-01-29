@@ -1,7 +1,7 @@
 var first_card = null;
 var second_card = null;
 var match_counter = 0;
-var total_matches = 4;
+var total_matches = 2;
 var canClick = true;
 
 function showBack(first, second) {
