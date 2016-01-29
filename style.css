@@ -3,12 +3,17 @@
 }
 
 body {
-    background-color: #333;
+    background-color: #e7dfe4;
+}
+
+p, li, a {
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 400;
 }
 
 header {
     width: 100%;
-    height: 10vh;
+    height: 15vh;
     color: #DDD;
     margin: 0;
 }
@@ -18,9 +23,32 @@ nav li, nav {
     margin: 0 20px;
 }
 
+header {
+    position: relative;
+}
+
+.header-container {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+nav li a {
+    font-size: 1em;
+    color: #262626;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    color: #25496f;
+}
+
 .stats, .shop {
-    width: 20%;
-    height: 90vh;
+    width: 22%;
+    height: 85vh;
 
 }
 
@@ -32,12 +60,92 @@ nav li, nav {
     float: right;
 }
 
-.stats-container, .shop-container {
+.stats-container, .shop-container, .items-container {
+    border-radius: 10px;
+    color: #AA9743;
+    margin: 5px 10px 10px 10px;
+    padding: 0px 0px 15px 0px;
+    background-color: rgba(27, 53, 54, .9);
 }
 
-.game-area {
-    width: 60%;
-    height: 90vh;
+.stats-header, .shop-header, .items-header {
+    margin: 0 0 15px 0;
+    background-color: #1E6E74;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+}
+
+h2 {
+    font-family: 'Marcellus', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    color: #e4c96a;
+}
+
+.stats ul {
+    list-style: none;
+    padding: 0;
+}
+
+.stats li {
+    font-weight: 400;
+    font-size: .9em;
+}
+
+.label {
+    display: inline-block;
+    width: 55%;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.value {
+    color: #fae497;
+}
+
+.reset {
+    display: block;
+    width: 50%;
+    margin: 15px auto;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 400;
+    font-size: .8em;
+    background-color: #1E6E74;
+    color: #15D4E1;
+    border: none;
+    box-shadow: 3px 3px #193235;
+}
+
+.reset:focus {
+    outline: none;
+    border: 1px solid white;
+}
+
+/* items */
+
+.items-container {
+    text-align: center;
+}
+
+.item-slot {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #101C1B;
+}
+
+.shop-container p {
+    margin: 0 20px;
+}
+
+#game-area {
+    width: 56%;
+    height: 85vh;
     float: left;
     text-align: center;
     padding-top: 5px;
@@ -46,9 +154,6 @@ nav li, nav {
     box-sizing: border-box;
 }
 
-.card-row {
-
-}
 
 .card {
     position: relative;
@@ -64,8 +169,10 @@ nav li, nav {
     position: absolute;
     top: 0;
     left: 0;
+    display: none;
 }
-
+/*
 .card:hover .back {
     display: none;
 }
+*/

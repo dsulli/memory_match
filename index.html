@@ -3,46 +3,98 @@
 <head>
     <meta charset="utf-8">
     <title>Memory Match</title>
+    <link href='https://fonts.googleapis.com/css?family=Palanquin|Marcellus' rel='stylesheet' type='text/css'>
     <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://learning-fuze.github.io/memory_match/v0.1/script.js"></script>
 </head>
 <body>
 
 <!-- Header -->
 <header>
-    <span>LOGO PLACEHOLDER</span>
-    <nav>
-        <ul>
-            <li>Play</li>
-            <li>Settings</li>
-            <li>About</li>
-        </ul>
-    </nav>
+    <div class="header-container">
+        <span>LOGO PLACEHOLDER</span>
+        <nav>
+            <ul>
+                <li><a href="index.html">Play</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </div>
+
 </header>
 
 <!-- Sidebar -->
 <aside class="stats">
-    <h2>Stats</h2>
-    <ul>
-        <li class="games-played"><span class="label">Games Played</span> <span class="value"></span></li>
-        <li class="attempts"><span class="label">Attempts</span> <span class="value"></span></li>
-        <li class="accuracy"><span class="label">Accuracy</span> <span class="value"></span></li>
-    </ul>
-    <button class="reset">Reset Game</button>
+    <div class="stats-container">
+        <div class="stats-header"><h2>Stats</h2></div>
+        <ul>
+            <li class="games-played"><span class="label">Games Played</span> <span class="value"></span></li>
+            <li class="attempts"><span class="label">Attempts</span> <span class="value"></span></li>
+            <li class="accuracy"><span class="label">Accuracy</span> <span class="value"></span></li>
+        </ul>
+        <button class="reset">Reset Game</button>
+    </div>
+
+    <div class="items-container">
+        <div class="items-header"><h2>Items</h2></div>
+
+        <div class="row">
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+        </div>
+        <div class="row">
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+            <div class="item-slot"></div>
+        </div>
+
+    </div>
+
 </aside>
 
 <!-- Game Area -->
-<main class="game-area">
-    <div class="card-row">
+<main id="game-area">
+    <div class="row">
         <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
+            <img src="images/card_annie.png" class="front">
             <img src="images/placeholdercardback.jpg" class="back">
         </div>
         <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
+            <img src="images/card_cait.png" class="front">
             <img src="images/placeholdercardback.jpg" class="back">
         </div>
         <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
+            <img src="images/card_ez.png" class="front">
+            <img src="images/placeholdercardback.jpg" class="back">
+        </div>
+        <div class="card">
+            <img src="images/card_gnar.png" class="front">
+            <img src="images/placeholdercardback.jpg" class="back">
+        </div>
+        <div class="card">
+            <img src="images/card_jinx.png" class="front">
+            <img src="images/placeholdercardback.jpg" class="back">
+        </div>
+        <div class="card">
+            <img src="images/card_lulu.png" class="front">
+            <img src="images/placeholdercardback.jpg" class="back">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card">
+            <img src="images/card_lux.png" class="front">
+            <img src="images/placeholdercardback.jpg" class="back">
+        </div>
+        <div class="card">
+            <img src="images/card_mf.png" class="front">
+            <img src="images/placeholdercardback.jpg" class="back">
+        </div>
+        <div class="card">
+            <img src="images/card_vi.png" class="front">
             <img src="images/placeholdercardback.jpg" class="back">
         </div>
         <div class="card">
@@ -59,34 +111,7 @@
         </div>
     </div>
 
-    <div class="card-row">
-        <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
-            <img src="images/placeholdercardback.jpg" class="back">
-        </div>
-        <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
-            <img src="images/placeholdercardback.jpg" class="back">
-        </div>
-        <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
-            <img src="images/placeholdercardback.jpg" class="back">
-        </div>
-        <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
-            <img src="images/placeholdercardback.jpg" class="back">
-        </div>
-        <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
-            <img src="images/placeholdercardback.jpg" class="back">
-        </div>
-        <div class="card">
-            <img src="images/placeholdercard.jpg" class="front">
-            <img src="images/placeholdercardback.jpg" class="back">
-        </div>
-    </div>
-
-    <div class="card-row">
+    <div class="row">
         <div class="card">
             <img src="images/placeholdercard.jpg" class="front">
             <img src="images/placeholdercardback.jpg" class="back">
@@ -117,7 +142,13 @@
 </main>
 
 <aside class="shop">
-    <h2>Shop</h2>
+    <div class="shop-container">
+        <div class="shop-header"><h2>Shop</h2></div>
+        <p>500</p>
+        <p>600</p>
+
+    </div>
+
 </aside>
 
 </body>
