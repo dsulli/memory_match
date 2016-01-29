@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #1D2D5B;
+    background-position: top;
+    background-image: url('images/tempbackground.jpg');
+    background-size: cover;
+}
+
+p, li, a, span {
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 400;
+}
+
+header {
+    width: 100%;
+    height: 15vh;
+    margin: 0;
+    position: relative;
+}
+
+.header-container {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#title {
+    display: inline-block;
+    font-family: 'Marcellus', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 2em;
+    margin: 0 20px;
+    color: #fae497;
+
+}
+
+
+nav ul{
+    padding-left: 0;
+    text-align: center;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+nav li a {
+    font-size: 1em;
+    color: #AA9743;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    color: #51A3D6;
+}
+
+.stats, .shop {
+    width: 22%;
+    height: 85vh;
+
+}
+
+.stats {
+    float: left;
+}
+
+.shop {
+    float: right;
+}
+
+.stats-container, .shop-container, .items-container {
+    border-radius: 10px;
+    color: #AA9743;
+    margin: 5px 10px 10px 10px;
+    padding: 0 0 15px 0;
+    background-color: rgba(27, 53, 54, .9);
+}
+
+.stats-header, .shop-header, .items-header {
+    margin: 0 0 15px 0;
+    background-color: rgba(30, 110, 116, .3);
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+
+}
+
+h2 {
+    font-family: 'Marcellus', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    color: #e4c96a;
+}
+
+.stats ul {
+    list-style: none;
+    padding: 0;
+}
+
+.stats li {
+    font-weight: 400;
+    font-size: .9em;
+}
+
+.label {
+    display: inline-block;
+    width: 55%;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.value, .total-gold {
+    color: #fae497;
+}
+
+.reset {
+    display: block;
+    width: 50%;
+    margin: 15px auto;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 400;
+    font-size: .8em;
+    background-color: #1E6E74;
+    color: #15D4E1;
+    border: none;
+    box-shadow: 3px 3px #193235;
+}
+
+.reset:focus {
+    outline: none;
+    border: 1px solid white;
+}
+
+/* items */
+
+.items-container, .shop-container  {
+    text-align: center;
+}
+
+.item-slot {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #101C1B;
+}
+
+
+.shop-container {
+    margin: 0 20px;
+}
+
+.gold {
+    width: 50%;
+    margin: auto;
+    background-color: #1d3331;
+}
+
+.shop-item {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.shop-item p {
+    margin-top: -5px;
+}
+
+#game-area {
+    width: 56%;
+    height: 85vh;
+    float: left;
+    text-align: center;
+    padding-top: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.card {
+    position: relative;
+    display: inline-block;
+    max-width: 16%;
+}
+
+.card img {
+    width: 100%;
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+/*
+.card:hover .back {
+    display: none;
+}
+*/
+
+#about {
+    width: 56%;
+    height: 80vh;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #AA9743;
+    background-color: rgba(27, 53, 54, .9);
+    padding: 20px;
+}
+
+#about p {
+    font-size: .9em;
+    margin: 1em;
+    line-height: 1.5em;
+}
+
+#about a {
+    color: #fae497;
+    text-decoration: none;
+}
+
+#about a:hover {
+    color: #fff;
+
+}
+
+#victory {
+    background-color: #000;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF;
+    font-family: 'Marcellus', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 3em;
+
+}
