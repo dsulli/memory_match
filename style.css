@@ -3,6 +3,7 @@
 }
 
 body {
+    background-color: #1D2D5B;
     background-position: top;
     background-image: url('images/lulu.jpg');
     background-size: cover;
@@ -144,7 +145,7 @@ h2 {
 
 /* items */
 
-.items-container {
+.items-container, .shop-container  {
     text-align: center;
 }
 
@@ -155,11 +156,8 @@ h2 {
     background-color: #101C1B;
 }
 
-.shop-container {
-    text-align: center;
-}
 
-.shop-container p {
+.shop-container {
     margin: 0 20px;
 }
 
@@ -167,6 +165,15 @@ h2 {
     width: 50%;
     margin: auto;
     background-color: #1d3331;
+}
+
+.shop-item {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.shop-item p {
+    margin-top: -5px;
 }
 
 #game-area {
@@ -202,3 +209,32 @@ h2 {
     display: none;
 }
 */
+
+#about {
+    width: 56%;
+    height: 80vh;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: #AA9743;
+    background-color: rgba(27, 53, 54, .9);
+    padding: 20px;
+}
+
+#about p {
+    font-size: .9em;
+    margin: 1em;
+    line-height: 1.5em;
+}
+
+#about a {
+    color: #fae497;
+    text-decoration: none;
+}
+
+#about a:hover {
+    color: #fff;
+
+}
