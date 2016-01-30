@@ -30,14 +30,12 @@ function reset_stats() {
     attempts = 0;
     accuracy = 0;
     match_counter = 0;
+    display_stats();
 }
 
+//only set accuracy when called so it doesn't divide 0 by 0
 function set_accuracy() {
     accuracy = Math.round((match_counter / attempts) * 100);
-}
-
-function show_victory() {
-
 }
 
 function card_clicked(current) {
