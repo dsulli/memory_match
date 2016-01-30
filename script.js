@@ -1,7 +1,7 @@
 var first_card = null;
 var second_card = null;
 var match_counter = 0;
-var total_matches = 2; //change this when you add more cards
+var total_matches = 9; //change this when you add more cards
 var canClick = true;
 var attempts = 0;
 var accuracy = 0;
@@ -77,7 +77,7 @@ function card_clicked(current) {
 
             //check if all cards are matched then display a "you win" message
             if(match_counter === total_matches) {
-                $('#victory').show();
+                $('#victory').fadeIn();
             }
         }
         else { //cards don't match
@@ -103,7 +103,7 @@ $(document).ready(function() {
         reset_stats();
         display_stats();
         $('.back').show();
-        $('#victory').hide();
+        $('#victory').fadeOut();
     });
 
 });

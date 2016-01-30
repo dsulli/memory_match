@@ -138,10 +138,6 @@ h2 {
     box-shadow: 3px 3px #193235;
 }
 
-.reset:focus {
-    outline: none;
-    border: 1px solid white;
-}
 
 /* items */
 
@@ -239,17 +235,39 @@ h2 {
 }
 
 #victory {
-    background-color: #000;
+    background: radial-gradient(rgb(74, 74, 67),  rgb(41, 41, 27));
     padding: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px #46D9FA;
+    border: 3px solid;
+    border-image: linear-gradient(#F5DF64, #D1A443, #966B4D);
+    border-image-slice: 1;
+    display: none;
+}
+
+#victory h3 {
     color: #FFF;
     font-family: 'Marcellus', serif;
     font-weight: 400;
     text-transform: uppercase;
     font-size: 3em;
-    display: none;
+    text-shadow: 2px 2px 2px #000;
+}
 
+#victory h3::first-letter {
+    font-size: 1.25em;
+}
+
+#victory span {
+    font-family: 'Marcellus', serif;
+
+    letter-spacing: -6px;
+}
+
+#victory h3::after {
+    content: 'y';
+    font-size: 1.25em;
 }
