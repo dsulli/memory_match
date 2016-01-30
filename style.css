@@ -250,5 +250,6 @@ h2 {
     font-weight: 400;
     text-transform: uppercase;
     font-size: 3em;
+    display: none;
 
 }
