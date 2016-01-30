@@ -83,6 +83,10 @@ function card_clicked(current) {
         else { //cards don't match
             showBack(first_card, second_card);
             reset_cards();
+
+            if(match_counter > 0) {
+                set_accuracy();
+            }
         }
 
         //refresh stats after every attempt
