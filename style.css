@@ -77,17 +77,21 @@ nav li a:hover {
 }
 
 .stats-container, .shop-container, .items-container {
-    border-radius: 10px;
+    border-style: solid;
+    border-width: 27px;
+    -moz-border-image: url(images/border-img.jpg) 27;
+    -webkit-border-image: url(images/border-img.jpg) 27;
+    -o-border-image: url(images/border-img.jpg) 27;
+    border-image: url(images/border-img.jpg) 27 fill;
+    box-sizing: border-box;
     color: #AA9743;
     margin: 5px 10px 10px 10px;
-    padding: 0 0 15px 0;
-    background-color: rgba(27, 53, 54, .9);
+    background-color: rgba(15, 35, 34, .9);
 }
 
 .stats-header, .shop-header, .items-header {
     margin: 0 0 15px 0;
     background-color: rgba(30, 110, 116, .3);
-    border-radius: 10px 10px 0 0;
     padding: 10px;
 
 }
@@ -249,7 +253,7 @@ h2 {
 }
 
 #victory h3 {
-    color: #FFF;
+    color: #FFF2AB;
     font-family: 'Marcellus', serif;
     font-weight: 400;
     text-transform: uppercase;
