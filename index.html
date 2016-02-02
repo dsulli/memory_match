@@ -4,11 +4,26 @@ Item ideas:
 
 Wards
 
-Pots
+Pots - heals x hp instantly
 
 Crit
 
-Armor
+Armor - reduces damage per hit
+
+HP - raises base HP
+
+locket - get gold on mismatch
+
+life steal - heal when match
+
+--
+use or sell items
+
+--
+
+user achievements
+unlock special content
+earn ranks
 
 -->
 
@@ -27,7 +42,7 @@ Armor
 <!-- Header -->
 <header>
     <div class="header-container">
-        <div id="title">League of Matching</div>
+        <div id="title">League <span>of</span> Matching</div>
         <nav>
             <ul>
                 <li><a href="index.html">Play</a></li>
@@ -48,10 +63,12 @@ Armor
             <li class="attempts"><span class="label">Attempts</span> <span class="value"></span></li>
             <li class="accuracy"><span class="label">Accuracy</span> <span class="value"></span></li>
         </ul>
+        <div id="hp-container">
+            <div id="hp-bar"></div>
+            <div id="hp-count"></div>
+        </div>
         <button class="reset">Reset Game</button>
-    </div>
 
-    <div class="items-container">
         <div class="items-header"><h2>Items</h2></div>
 
         <div class="row">
@@ -59,97 +76,76 @@ Armor
             <div class="item-slot"></div>
             <div class="item-slot"></div>
         </div>
-        <div class="row">
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
-        </div>
-
     </div>
+
+
+
 
 </aside>
 
 <!-- Game Area -->
 <main id="game-area">
         <div class="card">
-    <div class="front"><img src="images/card_annie.png"></div>
-    <div class="back"><img src="images/card_back.png"></div>
+            <div class="back"><img src="images/card-back.png"></div>
 </div>
     <div class="card">
-        <div class="front"><img src="images/card_annie.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_lulu.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_lulu.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
 
     <div class="card">
-        <div class="front"><img src="images/card_lux.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_lux.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
 
 
 
     <div class="card">
-        <div class="front"><img src="images/card_cait.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_cait.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_ez.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
 
     <div class="card">
-        <div class="front"><img src="images/card_ez.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_gnar.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
 
     <div class="card">
-        <div class="front"><img src="images/card_gnar.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_jinx.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_jinx.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
 
     <div class="card">
-        <div class="front"><img src="images/card_mf.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_mf.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
 
     <div class="card">
-        <div class="front"><img src="images/card_vi.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
     <div class="card">
-        <div class="front"><img src="images/card_vi.png"></div>
-        <div class="back"><img src="images/card_back.png"></div>
+        <div class="back"><img src="images/card-back.png"></div>
     </div>
 
 
@@ -160,7 +156,8 @@ Armor
     <div class="shop-container">
         <div class="shop-header"><h2>Shop</h2></div>
         <div class="gold">
-            <span class="total-gold">0</span>
+            <img src="images/coins.png" alt="gold icon">
+            <span id="total-gold"></span>
         </div>
         <div class="row">
             <div class="shop-item">
@@ -209,7 +206,7 @@ Armor
     </div>
 
     <div id="victory"><h3>Victo<span>r</span></h3></div>
-
+    <div id="defeat"><h3>Defe<span>a</span></h3></div>
 </aside>
 </body>
 </html>

@@ -3,10 +3,10 @@
 }
 
 body {
-    background-color: #1D2D5B;
-    background-position: top;
+    background: linear-gradient(#333, #111);
+    /*background-position: top;
     background-image: url('images/tempbackground.jpg');
-    background-size: cover;
+    background-size: cover;*/
 }
 
 p, li, a, span {
@@ -35,9 +35,15 @@ header {
     font-weight: 400;
     text-transform: uppercase;
     font-size: 2em;
-    margin: 0 20px;
+    margin: 10px 20px -5px 20px;
     color: #fae497;
 
+}
+
+#title span {
+
+    font-family: 'Marcellus', serif;
+    font-size: .7em;
 }
 
 
@@ -54,7 +60,6 @@ nav li {
 nav li a {
     font-size: 1em;
     color: #AA9743;
-    text-transform: uppercase;
     text-decoration: none;
 }
 
@@ -76,7 +81,7 @@ nav li a:hover {
     float: right;
 }
 
-.stats-container, .shop-container, .items-container {
+.stats-container, .shop-container, .items-container, #about {
     border-style: solid;
     border-width: 27px;
     -moz-border-image: url(images/border-img.jpg) 27;
@@ -121,14 +126,42 @@ h2 {
     padding-right: 10px;
 }
 
-.value, .total-gold {
+.value, #total-gold {
     color: #fae497;
+}
+
+#hp-container {
+    width: 160px;
+    height: 20px;
+    background-color: #101C1B;
+    border: 1px solid #1E6E74;
+    padding: 1px;
+    margin: 10px auto;
+    position: relative;
+}
+
+#hp-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #00A106;
+    transition: width .25s;
+}
+#hp-count {
+    margin: auto;
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFF;
+    text-shadow: 0 0 3px #000;
+    font-family: 'Palanquin', sans-serif;
+    font-size: .9em;
 }
 
 .reset {
     display: block;
     width: 50%;
-    margin: 15px auto;
+    margin: 15px auto 30px auto;
     padding: 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -145,7 +178,11 @@ h2 {
 
 /* items */
 
-.items-container, .shop-container  {
+.row {
+    text-align: center;
+}
+
+.shop-container  {
     text-align: center;
 }
 
@@ -157,23 +194,26 @@ h2 {
 }
 
 
-.shop-container {
-    margin: 0 20px;
-}
 
 .gold {
-    width: 50%;
+    width: 160px;
     margin: auto;
     background-color: #1d3331;
 }
 
+.gold img {
+    margin-right: 5px;
+    height: .8em;
+}
+
 .shop-item {
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .shop-item p {
-    margin-top: -5px;
+    font-size: .9em;
+    margin-top: -6px;
 }
 
 #game-area {
@@ -187,11 +227,16 @@ h2 {
     box-sizing: border-box;
 }
 
+#game-area .card:nth-child {
+}
+
 
 .card {
     position: relative;
     display: inline-block;
-    max-width: 16%;
+    max-width: 15%;
+    margin: .5%;
+
 }
 
 .card img {
@@ -211,14 +256,8 @@ h2 {
 
 #about {
     width: 56%;
-    height: 80vh;
     float: left;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    border-radius: 10px;
     color: #AA9743;
-    background-color: rgba(27, 53, 54, .9);
     padding: 20px;
 }
 
@@ -238,21 +277,28 @@ h2 {
 
 }
 
-#victory {
+#victory, #defeat {
     background: radial-gradient(rgb(74, 74, 67),  rgb(41, 41, 27));
     padding: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 40px #46D9FA;
     border: 3px solid;
     border-image: linear-gradient(#F5DF64, #D1A443, #966B4D);
     border-image-slice: 1;
     display: none;
 }
 
-#victory h3 {
+#victory {
+    box-shadow: 0 0 40px #46D9FA;
+}
+
+#defeat {
+    box-shadow: 0 0 40px #F20203;
+}
+
+#victory h3, #defeat h3 {
     color: #FFF2AB;
     font-family: 'Marcellus', serif;
     font-weight: 400;
@@ -261,11 +307,11 @@ h2 {
     text-shadow: 2px 2px 2px #000;
 }
 
-#victory h3::first-letter {
+#victory h3::first-letter, #defeat h3::first-letter {
     font-size: 1.25em;
 }
 
-#victory span {
+#victory span, #defeat span  {
     font-family: 'Marcellus', serif;
 
     letter-spacing: -6px;
@@ -274,4 +320,9 @@ h2 {
 #victory h3::after {
     content: 'y';
     font-size: 1.25em;
+}
+
+#defeat h3::after {
+    content: 't';
+    font-size: 1.2em;
 }
