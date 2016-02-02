@@ -97,13 +97,14 @@ nav li a:hover {
 .stats-header, .shop-header, .items-header {
     margin: 0 0 15px 0;
     background-color: rgba(30, 110, 116, .3);
-    padding: 10px;
+    padding: 6px;
 
 }
 
 h2 {
     font-family: 'Marcellus', serif;
     font-weight: 400;
+    font-size: 1.2em;
     text-transform: uppercase;
     text-align: center;
     color: #e4c96a;
@@ -199,6 +200,11 @@ h2 {
     width: 160px;
     margin: auto;
     background-color: #1d3331;
+    transition: background-color .5s;
+}
+
+.gold-active {
+    background-color: #1E6E74;
 }
 
 .gold img {

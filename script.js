@@ -18,7 +18,18 @@ var currentGold = 300;
 *
 * */
 
+var items = [
+    //health pot heals for 100
+    {
+        name: 'Health Pot',
+        cost: 200,
+        effect: function () {
+            update_hp(100);
+        }
+    }
+];
 
+var inventory = [];
 
 //function for when first and second cards don't match, shows the backs of them again
 function showBack(first, second) {
@@ -176,8 +187,47 @@ function update_hp(val) {
 }
 
 function update_gold(val) {
+    if(currentGold + val < 0) {
+        return;
+    }
+
     currentGold += val;
     $('#total-gold').html(currentGold);
+    $('.gold').addClass('gold-active');
+    setTimeout(function(){
+        $('.gold').removeClass('gold-active');
+    }, 500);
+
+}
+
+function reset() {
+    games_played++;
+    remove_cards()
+    randomize_cards();
+    reset_stats();
+    display_stats();
+    $('.back').show();
+    $('#victory').fadeOut();
+    $('#defeat').fadeOut();
+    canClick = true;
+    newHP = 1000;
+    baseHP = 1000;
+    $('#hp-count').html(newHP + ' / ' + baseHP);
+    $('#hp-bar').css('width', newHP/baseHP * 100 + '%');
+    currentGold = 300;
+    update_gold(0);
+}
+
+function item_clicked(item) {
+    for(var i = 0; i < items.length; i++) {
+        if(item.find('img').attr('alt') == items[i].name) {
+            if(currentGold >= items[i].cost) {
+                update_gold(-(items[i].cost));
+                items[i].effect();
+            }
+        }
+    }
+
 }
 
 $(document).ready(function() {
@@ -190,22 +240,12 @@ $(document).ready(function() {
         card_clicked($(this));
     });
 
+    $('.shop-item').click(function() {
+        item_clicked($(this));
+    });
+
     $('.reset').click(function() {
-       games_played++;
-        remove_cards()
-        randomize_cards();
-        reset_stats();
-        display_stats();
-        $('.back').show();
-        $('#victory').fadeOut();
-        $('#defeat').fadeOut();
-        canClick = true;
-        newHP = 1000;
-        baseHP = 1000;
-        $('#hp-count').html(newHP + ' / ' + baseHP);
-        $('#hp-bar').css('width', newHP/baseHP * 100 + '%');
-        currentGold = 300;
-        update_gold(0);
+       reset();
     });
 
 });
