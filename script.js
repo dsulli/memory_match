@@ -23,8 +23,35 @@ var items = [
     {
         name: 'Health Pot',
         cost: 200,
+        type: 'consume',
+        src: 'images/healthpot.png',
         effect: function () {
-            update_hp(100);
+            update_hp(50);
+        }
+    },
+
+    //armor reduces damage from 100 to 50 from hit
+    {
+        name: 'Armor',
+        cost: 600,
+        type: 'passive',
+        src: 'images/armor.png',
+        effect: function () {
+            update_hp(-50);
+        }
+    },
+
+    //health item raises base HP by 200
+    {
+        name: 'Health Item',
+        cost: 200,
+        type: 'passive',
+        src: 'images/healthitem.png',
+        effect: function () {
+
+            baseHP += 200;
+
+            update_hp(0);
         }
     }
 ];
@@ -216,16 +243,59 @@ function reset() {
     $('#hp-bar').css('width', newHP/baseHP * 100 + '%');
     currentGold = 300;
     update_gold(0);
+    clear_inventory();
+}
+
+function update_inventory(item) {
+    /*
+        loop through item slots
+        check if empty
+        if empty, put purchased item into slot
+        if not empty, move on
+        if there are no empty slots, do nothing, don't buy item
+     */
+
+    for(var i = 0; i < 3; i++) {
+        if($('#inventory .item-slot:nth-child(' + (i + 1) + ')').html() == '') {
+            $('#inventory .item-slot:nth-child(' + (i + 1) + ')').append('<img src="' + item.src + '" alt="' + item.name + '"></div>');
+            return;
+        }
+    }
+}
+
+function clear_inventory() {
+    $('#inventory .item-slot').empty();
 }
 
 function item_clicked(item) {
+    var item_bought;
+
+    //search for that item's info
     for(var i = 0; i < items.length; i++) {
         if(item.find('img').attr('alt') == items[i].name) {
-            if(currentGold >= items[i].cost) {
-                update_gold(-(items[i].cost));
-                items[i].effect();
-            }
+            item_bought = items[i];
         }
+    }
+
+    //check if item is already in inventory
+
+    //Check if item can be bought
+    if(currentGold >= item_bought.cost) {
+
+
+        //check if item is a consumable, then use immediately
+        if(item_bought.type == "consume"){
+            item_bought.effect();
+        }
+
+        //check if item is a passive item, then put into inventory
+        if(item_bought.type == "passive") {
+            update_inventory(item_bought);
+            item_bought.effect();
+        }
+
+        //subtract item cost from current gold
+        update_gold(-(item_bought.cost));
     }
 
 }
