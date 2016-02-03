@@ -94,7 +94,7 @@ var items = [
         type: 'passive',
         src: 'images/crit.png',
         effect: function () {
-            critChance += 1;
+            critChance += .09;
         }
     }
 ];
@@ -141,9 +141,12 @@ function set_accuracy() {
 
 
 function find_card(card) {
+
     var first = card.find('.front img').attr('src');
+    console.log(card.index());
     for(var i = 0; i < 18; i++) {
-        if($('.card:nth-child(' + (i+1) + ')').find('.front img').attr('src') == first) {
+        if($('.card').eq(i).find('.front img').attr('src') == first &&
+            $('.card').eq(i).index() !== card.index()) {
             console.log('found');
             return $('.card:nth-child(' + (i+1) + ')');
         }
@@ -182,8 +185,8 @@ function card_clicked(current) {
     //if first card hasn't been flipped, set this one to first card
     if(first_card == null) {
         first_card = current;
-        //Math.random() < critChance
-        if(true) {
+
+        if(Math.random() < critChance) {
 
             second_card = find_card(current);
             attempts++;
