@@ -1,3 +1,7 @@
+/*
+To do at some point: Make object oriented (cards and items);
+ */
+
 var first_card = null;
 var second_card = null;
 var match_counter = 0;
@@ -54,9 +58,19 @@ var items = [
         type: 'passive',
         src: 'images/healthitem.png',
         effect: function () {
-
             baseHP += 200;
             update_hp(0);
+        }
+    },
+
+    //Ancient Coin gives gold on mismatch
+    {
+        name: 'Ancient Coin',
+        cost: 200,
+        type: 'passive',
+        src: 'images/ancientcoin.png',
+        effect: function () {
+            passiveGold += 20;
         }
     }
 ];
@@ -125,6 +139,7 @@ function card_clicked(current) {
         //compares the two image source values
         //if they are the same
         if(first_card.find('.front img').attr('src') == second_card.find('.front img').attr('src')) {
+            update_hp(lifeSteal);
             update_gold(300);
             match_counter++;
             //now that you've made a match, you can't divide by 0 anymore so we can now calculate accuracy
@@ -145,6 +160,7 @@ function card_clicked(current) {
             if(match_counter > 0) {
                 set_accuracy();
             }
+            update_gold(passiveGold);
             update_hp(-100 + (100 * armor));
         }
 
