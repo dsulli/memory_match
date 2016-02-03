@@ -35,7 +35,7 @@ var items = [
     //health pot heals for 100
     {
         name: 'Health Pot',
-        cost: 200,
+        cost: 150,
         type: 'consume',
         src: 'images/healthpot.png',
         effect: function () {
@@ -46,7 +46,7 @@ var items = [
     //armor reduces damage from 100 to 50 from hit
     {
         name: 'Armor',
-        cost: 200,
+        cost: 400,
         type: 'passive',
         src: 'images/armor.png',
         effect: function () {
@@ -57,49 +57,50 @@ var items = [
     //health item raises base HP by 200
     {
         name: 'Health Item',
-        cost: 200,
+        cost: 800,
         type: 'passive',
         src: 'images/healthitem.png',
         effect: function () {
             baseHP += 200;
-            update_hp(0);
+            update_hp(200);
         }
     },
 
     //Ancient Coin gives gold on mismatch
     {
         name: 'Ancient Coin',
-        cost: 200,
+        cost: 300,
         type: 'passive',
         src: 'images/ancientcoin.png',
         effect: function () {
-            passiveGold += 20;
+            passiveGold += 30;
         }
     },
 
     //Life steal revives hp upon killing
     {
         name: 'Life Steal',
-        cost: 200,
+        cost: 900,
         type: 'passive',
         src: 'images/lifesteal.png',
         effect: function () {
-            lifeSteal += 20;
+            lifeSteal += 30;
         }
     },
 
     //Crit chance raises the chances of automatically getting a match
     {
         name: 'Crit',
-        cost: 200,
+        cost: 500,
         type: 'passive',
         src: 'images/crit.png',
         effect: function () {
-            critChance += .15;
+            critChance += .08;
         }
     }
 ];
 
+/* ------------- CARD FUNCTIONS ------------- */
 
 //function for when first and second cards don't match, shows the backs of them again
 function showBack(first, second) {
@@ -109,7 +110,7 @@ function showBack(first, second) {
         first.find('.back').show();
         second.find('.back').show();
         canClick = true;
-    }, 1000);
+    }, 1800);
 }
 
 //run after first and second cards are flipped, resets values
@@ -117,6 +118,9 @@ function reset_cards() {
     first_card = null;
     second_card = null;
 }
+
+
+/* ------------- GAME STAT FUNCTIONS ------------- */
 
 //display stats
 function display_stats() {
@@ -137,6 +141,8 @@ function reset_stats() {
 function set_accuracy() {
     accuracy = Math.round((match_counter / attempts) * 100);
 }
+
+
 
 
 
@@ -186,7 +192,7 @@ function card_clicked(current) {
     if(first_card == null) {
         first_card = current;
 
-        if(Math.random() < critChance) {
+        if(Math.random() <= critChance) {
 
             second_card = find_card(current);
             attempts++;
@@ -345,20 +351,23 @@ function update_inventory(item) {
 
 function clear_inventory() {
     $('#inventory .item-slot').empty();
+    inventoryCount = 0;
 }
 
 function item_clicked(item) {
     var item_bought;
 
-    if(inventoryCount > 2) {
-        return;
-    }
+
 
     //search for that item's info
     for(var i = 0; i < items.length; i++) {
         if(item.find('img').attr('alt') == items[i].name) {
             item_bought = items[i];
         }
+    }
+
+    if(item_bought.name != 'Health Pot' && inventoryCount > 3) {
+        return;
     }
 
     //Check if item can be bought
@@ -378,7 +387,10 @@ function item_clicked(item) {
 
         //subtract item cost from current gold
         update_gold(-(item_bought.cost));
-        inventoryCount++;
+        if(item_bought.name != 'Health Pot') {
+            inventoryCount++;
+        }
+
     }
 
 }
