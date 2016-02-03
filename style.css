@@ -194,11 +194,9 @@ h2 {
     background-color: #101C1B;
 }
 
-
-
 .gold {
     width: 160px;
-    margin: auto;
+    margin: 30px auto 20px auto;
     background-color: #1d3331;
     transition: background-color .5s;
 }

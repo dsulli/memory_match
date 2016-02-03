@@ -1,5 +1,7 @@
 /*
-To do at some point: Make object oriented (cards and items);
+To do at some point:
+- Make object oriented (cards and items)
+- "You have slain an enemy" "Double Kill" etc
  */
 
 var first_card = null;
@@ -72,6 +74,28 @@ var items = [
         effect: function () {
             passiveGold += 20;
         }
+    },
+
+    //Life steal revives hp upon killing
+    {
+        name: 'Life Steal',
+        cost: 200,
+        type: 'passive',
+        src: 'images/lifesteal.png',
+        effect: function () {
+            lifeSteal += 20;
+        }
+    },
+
+    //Crit chance raises the chances of automatically getting a match
+    {
+        name: 'Crit',
+        cost: 200,
+        type: 'passive',
+        src: 'images/crit.png',
+        effect: function () {
+            critChance += 1;
+        }
     }
 ];
 
@@ -114,6 +138,35 @@ function set_accuracy() {
     accuracy = Math.round((match_counter / attempts) * 100);
 }
 
+
+
+function find_card(card) {
+    var first = card.find('.front img').attr('src');
+    for(var i = 0; i < 18; i++) {
+        if($('.card:nth-child(' + (i+1) + ')').find('.front img').attr('src') == first) {
+            console.log('found');
+            return $('.card:nth-child(' + (i+1) + ')');
+        }
+    }
+}
+
+function made_match(){
+    update_hp(lifeSteal);
+    update_gold(300);
+    match_counter++;
+    //now that you've made a match, you can't divide by 0 anymore so we can now calculate accuracy
+    set_accuracy();
+
+    //now start over
+    reset_cards();
+
+    //check if all cards are matched then display a "you win" message
+    if(match_counter === total_matches) {
+        $('#victory').fadeIn();
+    }
+
+}
+
 function card_clicked(current) {
     //check if can click
     //check if the card is already flipped
@@ -129,6 +182,17 @@ function card_clicked(current) {
     //if first card hasn't been flipped, set this one to first card
     if(first_card == null) {
         first_card = current;
+        //Math.random() < critChance
+        if(true) {
+
+            second_card = find_card(current);
+            attempts++;
+            second_card.find('.back').hide();
+
+            made_match();
+            display_stats();
+        }
+
         return;
     }
     //if first card has been set, set this one to second card
@@ -139,19 +203,7 @@ function card_clicked(current) {
         //compares the two image source values
         //if they are the same
         if(first_card.find('.front img').attr('src') == second_card.find('.front img').attr('src')) {
-            update_hp(lifeSteal);
-            update_gold(300);
-            match_counter++;
-            //now that you've made a match, you can't divide by 0 anymore so we can now calculate accuracy
-            set_accuracy();
-
-            //now start over
-            reset_cards();
-
-            //check if all cards are matched then display a "you win" message
-            if(match_counter === total_matches) {
-                $('#victory').fadeIn();
-            }
+            made_match();
         }
         else { //cards don't match
 
