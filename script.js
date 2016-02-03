@@ -7,9 +7,15 @@ var attempts = 0;
 var accuracy = 0;
 var games_played = 0;
 var newHP = 1000;
-var baseHP = 1000;
 var card_flip_timer = null;
 var currentGold = 300;
+
+//player stats from items
+var baseHP = 1000;
+var critChance = 0;
+var armor = 0;
+var lifeSteal = 0;
+var passiveGold = 0;
 
 /*
 * To randomize cards:
