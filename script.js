@@ -23,6 +23,7 @@ var armor = 0;
 var lifeSteal = 0;
 var passiveGold = 0;
 
+var inventoryCount = 0;
 /*
 * To randomize cards:
 * make an array with the cards in them
@@ -94,12 +95,11 @@ var items = [
         type: 'passive',
         src: 'images/crit.png',
         effect: function () {
-            critChance += .09;
+            critChance += .15;
         }
     }
 ];
 
-var inventory = [];
 
 //function for when first and second cards don't match, shows the backs of them again
 function showBack(first, second) {
@@ -350,14 +350,16 @@ function clear_inventory() {
 function item_clicked(item) {
     var item_bought;
 
+    if(inventoryCount > 2) {
+        return;
+    }
+
     //search for that item's info
     for(var i = 0; i < items.length; i++) {
         if(item.find('img').attr('alt') == items[i].name) {
             item_bought = items[i];
         }
     }
-
-    //check if item is already in inventory
 
     //Check if item can be bought
     if(currentGold >= item_bought.cost) {
@@ -376,6 +378,7 @@ function item_clicked(item) {
 
         //subtract item cost from current gold
         update_gold(-(item_bought.cost));
+        inventoryCount++;
     }
 
 }
