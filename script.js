@@ -39,11 +39,11 @@ var items = [
     //armor reduces damage from 100 to 50 from hit
     {
         name: 'Armor',
-        cost: 600,
+        cost: 200,
         type: 'passive',
         src: 'images/armor.png',
         effect: function () {
-            update_hp(-50);
+            armor += .2;
         }
     },
 
@@ -56,7 +56,6 @@ var items = [
         effect: function () {
 
             baseHP += 200;
-
             update_hp(0);
         }
     }
@@ -146,7 +145,7 @@ function card_clicked(current) {
             if(match_counter > 0) {
                 set_accuracy();
             }
-            update_hp(-100);
+            update_hp(-100 + (100 * armor));
         }
 
         //refresh stats after every attempt
@@ -245,6 +244,10 @@ function reset() {
     canClick = true;
     newHP = 1000;
     baseHP = 1000;
+    critChance = 0;
+    armor = 0;
+    lifeSteal = 0;
+    passiveGold = 0;
     $('#hp-count').html(newHP + ' / ' + baseHP);
     $('#hp-bar').css('width', newHP/baseHP * 100 + '%');
     currentGold = 300;
