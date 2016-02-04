@@ -252,7 +252,7 @@ h2 {
     display: inline-block;
     max-width: 15%;
     margin: .5%;
-    transition: 0.6s;
+    transition: 0.3s;
     transform-style: preserve-3d;
 }
 

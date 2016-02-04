@@ -107,6 +107,8 @@ function showBack(first, second) {
     canClick = false;
     card_flip_timer = setTimeout(function(){
         card_flip_timer = null;
+        first.removeClass('card-flip');
+        second.removeClass('card-flip');
         first.find('.back').show();
         second.find('.back').show();
         canClick = true;
@@ -157,13 +159,18 @@ function card_clicked(current) {
     //check if can click
     //check if the card is already flipped
     //then do nothing if either are true
-    console.log(canClick);
     if(canClick === false || current.find('.back').css('display') == 'none') {
         return;
     }
 
     //flips the card over, showing the front
-    current.find('.back').hide();
+    current.addClass('card-flip');
+    canClick = false;
+    setTimeout(function(){
+        current.find('.back').hide();
+        canClick = true;
+    }, 300);
+
 
     //if first card hasn't been flipped, set this one to first card
     if(first_card == null) {
