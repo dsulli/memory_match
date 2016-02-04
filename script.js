@@ -32,7 +32,7 @@ var inventoryCount = 0;
 * */
 
 var items = [
-    //health pot heals for 100
+    //health pot heals for 50
     {
         name: 'Health Pot',
         cost: 150,
@@ -119,47 +119,24 @@ function reset_cards() {
     second_card = null;
 }
 
+function made_match(second_card){
 
-/* ------------- GAME STAT FUNCTIONS ------------- */
+    var goldNotice = $('<div>').addClass('plus-gold').text('+300');
+    $(goldNotice).animate({
+        top: '-10px',
+        opacity: '1'
+    });
+    $(second_card).append(goldNotice);
+    setTimeout(function() {
+        $(goldNotice).animate({
+            opacity: '0',
+            function(){
+                $(goldNotice).remove(); }
+        });
 
-//display stats
-function display_stats() {
-    $('.games-played .value').text(games_played);
-    $('.attempts .value').text(attempts);
-    $('.accuracy .value').text(accuracy + "%");
-}
-
-//resets stats when "reset game" button is clicked
-function reset_stats() {
-    attempts = 0;
-    accuracy = 0;
-    match_counter = 0;
-    display_stats();
-}
-
-//only set accuracy when called so it doesn't divide 0 by 0
-function set_accuracy() {
-    accuracy = Math.round((match_counter / attempts) * 100);
-}
+    }, 1000);
 
 
-
-
-
-function find_card(card) {
-
-    var first = card.find('.front img').attr('src');
-    console.log(card.index());
-    for(var i = 0; i < 18; i++) {
-        if($('.card').eq(i).find('.front img').attr('src') == first &&
-            $('.card').eq(i).index() !== card.index()) {
-            console.log('found');
-            return $('.card:nth-child(' + (i+1) + ')');
-        }
-    }
-}
-
-function made_match(){
     update_hp(lifeSteal);
     update_gold(300);
     match_counter++;
@@ -212,7 +189,7 @@ function card_clicked(current) {
         //compares the two image source values
         //if they are the same
         if(first_card.find('.front img').attr('src') == second_card.find('.front img').attr('src')) {
-            made_match();
+            made_match(second_card);
         }
         else { //cards don't match
 
@@ -227,6 +204,19 @@ function card_clicked(current) {
 
         //refresh stats after every attempt
         display_stats();
+    }
+}
+
+function find_card(card) {
+
+    var first = card.find('.front img').attr('src');
+    console.log(card.index());
+    for(var i = 0; i < 18; i++) {
+        if($('.card').eq(i).find('.front img').attr('src') == first &&
+            $('.card').eq(i).index() !== card.index()) {
+            console.log('found');
+            return $('.card:nth-child(' + (i+1) + ')');
+        }
     }
 }
 
@@ -270,6 +260,35 @@ function randomize_cards() {
 function remove_cards() {
     $('.front').remove();
 }
+
+
+/* ------------- GAME STAT FUNCTIONS ------------- */
+
+//display stats
+function display_stats() {
+    $('.games-played .value').text(games_played);
+    $('.attempts .value').text(attempts);
+    $('.accuracy .value').text(accuracy + "%");
+}
+
+//resets stats when "reset game" button is clicked
+function reset_stats() {
+    attempts = 0;
+    accuracy = 0;
+    match_counter = 0;
+    display_stats();
+}
+
+//only set accuracy when called so it doesn't divide 0 by 0
+function set_accuracy() {
+    accuracy = Math.round((match_counter / attempts) * 100);
+}
+
+
+/* ------------- GAME PLAY FUNCTIONS ------------- */
+
+
+
 function game_over() {
     clearTimeout(card_flip_timer);
     $('#defeat').fadeIn();
@@ -302,10 +321,15 @@ function update_gold(val) {
 
     currentGold += val;
     $('#total-gold').html(currentGold);
-    $('.gold').addClass('gold-active');
-    setTimeout(function(){
-        $('.gold').removeClass('gold-active');
-    }, 500);
+
+
+    if(val !== 0) {
+        $('.gold').addClass('gold-active');
+        setTimeout(function(){
+            $('.gold').removeClass('gold-active');
+        }, 500);
+    }
+
 
 }
 
@@ -331,6 +355,9 @@ function reset() {
     update_gold(0);
     clear_inventory();
 }
+
+/* ------------- ITEM FUNCTIONS ------------- */
+
 
 function update_inventory(item) {
     /*
@@ -409,8 +436,20 @@ $(document).ready(function() {
         item_clicked($(this));
     });
 
+    $('.shop-item').mouseenter(function() {
+       $(this).find('.tooltip').fadeIn();
+
+    });
+
+    $('.shop-item').mouseleave(function() {
+        $(this).find('.tooltip').fadeOut(0);
+
+    });
+
     $('.reset').click(function() {
        reset();
     });
+
+
 
 });
