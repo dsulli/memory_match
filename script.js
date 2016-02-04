@@ -111,8 +111,11 @@ function showBack(first, second) {
         second.removeClass('card-flip');
         first.find('.back').show();
         second.find('.back').show();
-        canClick = true;
+
     }, 1800);
+    setTimeout(function() {
+        canClick = true;
+    }, 3000);
 }
 
 //run after first and second cards are flipped, resets values
@@ -303,8 +306,17 @@ function game_over() {
     $('#defeat').fadeIn();
     $('.front').css('backface-visibility', 'visible');
 
-    //FIX THIS SO THAT IT DOESNT ROTATE THE ALREADY FLIPPED CARDS
-    $('.front').css('transform', 'rotateY(0deg)');
+    for(var i = 0; i < 18; i++) {
+        if($('.card').eq(i).hasClass('card-flip')) {
+            $('.card').eq(i).find('.front').css('transform', 'rotateY(180deg)');
+        } else {
+            $('.card').eq(i).find('.front').css('transform', 'rotateY(0deg)');
+        }
+    }
+
+
+
+
     $('.back').hide();
 }
 
