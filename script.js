@@ -111,11 +111,11 @@ function showBack(first, second) {
         second.removeClass('card-flip');
         first.find('.back').show();
         second.find('.back').show();
-
-    }, 1800);
-    setTimeout(function() {
         canClick = true;
-    }, 3000);
+
+    }, 1250);
+
+
 }
 
 //run after first and second cards are flipped, resets values
@@ -128,15 +128,16 @@ function made_match(second_card){
     //second_card.find('.front').css('backface-visibility', 'visible');
 
 
-    var goldNotice = $('<div>').addClass('plus-gold').text('+300');
+    var goldNotice = $('<div>').addClass('plus-gold').html('+300 <img src="images/coins.png" alt="gold icon">');
     $(goldNotice).animate({
-        top: '-10px',
+        top: '-20px',
         opacity: '1'
     });
     $(second_card).append(goldNotice);
     setTimeout(function() {
         $(goldNotice).animate({
             opacity: '0',
+            top: '10px',
             function(){
                 $(goldNotice).remove(); }
         });
@@ -175,7 +176,6 @@ function card_clicked(current) {
         current.find('.back').hide();
         canClick = true;
     }, 600);
-
 
     //if first card hasn't been flipped, set this one to first card
     if(first_card == null) {
@@ -364,6 +364,7 @@ function reset() {
     randomize_cards();
     reset_stats();
     display_stats();
+    $('.card').removeClass('card-flip');
     $('.back').show();
     $('#victory').fadeOut();
     $('#defeat').fadeOut();
