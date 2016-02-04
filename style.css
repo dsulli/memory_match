@@ -252,7 +252,7 @@ h2 {
     display: inline-block;
     max-width: 15%;
     margin: .5%;
-    transition: 0.3s;
+    transition: 0.6s;
     transform-style: preserve-3d;
 }
 
@@ -368,6 +368,6 @@ h2 {
     position: absolute;
     top: -1em;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) rotateY(180deg);
     opacity: 0;
 }

@@ -122,6 +122,8 @@ function reset_cards() {
 }
 
 function made_match(second_card){
+    //second_card.find('.front').css('backface-visibility', 'visible');
+
 
     var goldNotice = $('<div>').addClass('plus-gold').text('+300');
     $(goldNotice).animate({
@@ -169,7 +171,7 @@ function card_clicked(current) {
     setTimeout(function(){
         current.find('.back').hide();
         canClick = true;
-    }, 300);
+    }, 600);
 
 
     //if first card hasn't been flipped, set this one to first card
@@ -196,10 +198,10 @@ function card_clicked(current) {
         //compares the two image source values
         //if they are the same
         if(first_card.find('.front img').attr('src') == second_card.find('.front img').attr('src')) {
+
             made_match(second_card);
         }
         else { //cards don't match
-
             showBack(first_card, second_card);
             reset_cards();
             if(match_counter > 0) {
@@ -299,6 +301,10 @@ function set_accuracy() {
 function game_over() {
     clearTimeout(card_flip_timer);
     $('#defeat').fadeIn();
+    $('.front').css('backface-visibility', 'visible');
+
+    //FIX THIS SO THAT IT DOESNT ROTATE THE ALREADY FLIPPED CARDS
+    $('.front').css('transform', 'rotateY(0deg)');
     $('.back').hide();
 }
 
