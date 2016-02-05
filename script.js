@@ -121,7 +121,7 @@ function reset_cards() {
     first_card = null;
     second_card = null;
 }
-
+//dan start
 function made_match(second_card){
     //second_card.find('.front').css('backface-visibility', 'visible');
 
@@ -158,7 +158,7 @@ function made_match(second_card){
     }
 
 }
-
+//dan end
 function card_clicked(current) {
     //check if can click
     //check if the card is already flipped
@@ -360,6 +360,7 @@ function reset_card_primer(){
     $('.card').off('transitionend',reset_card_primer);
     reset_card_count = 18;
 }
+//dan start
 function reset() {
 
 
@@ -385,7 +386,7 @@ function reset() {
     update_gold(0);
     clear_inventory();
 }
-
+//dan start
 /* ------------- ITEM FUNCTIONS ------------- */
 
 
