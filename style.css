@@ -230,6 +230,8 @@ h2 {
     right: 100%;
     top: 0%;
     z-index: 1000;
+    pointer-events: none;
+    /* prevents mouse events on .tooltip */
 }
 
 
@@ -242,7 +244,6 @@ h2 {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
     perspective: 1000px;
 }
 
@@ -252,27 +253,17 @@ h2 {
     display: inline-block;
     max-width: 15%;
     margin: .5%;
-    transition: 0.6s;
+    transition-duration: 0.6s;
     transform-style: preserve-3d;
 }
 
 .front, .back {
     backface-visibility: hidden;
+
 }
 
-.back {
-    transform: rotateY(0deg);
-}
 .front {
-    transform: rotateY(180deg);
-}
-
-.card-flip  {
-    transform: rotateY(180deg);
-}
-
-.card img {
-    width: 100%;
+    transform: rotate3D(0,1,0,180deg);
 }
 
 .back {
@@ -280,11 +271,15 @@ h2 {
     top: 0;
     left: 0;
 }
-/*
-.card:hover .back {
-    display: none;
+
+.card-flip  {
+    transform: rotate3D(0,1,0,180deg);
 }
-*/
+
+.card img {
+    width: 100%;
+}
+
 
 #about {
     width: 56%;

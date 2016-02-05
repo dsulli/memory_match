@@ -109,8 +109,6 @@ function showBack(first, second) {
         card_flip_timer = null;
         first.removeClass('card-flip');
         second.removeClass('card-flip');
-        first.find('.back').show();
-        second.find('.back').show();
         canClick = true;
 
     }, 1250);
@@ -165,17 +163,13 @@ function card_clicked(current) {
     //check if can click
     //check if the card is already flipped
     //then do nothing if either are true
-    if(canClick === false || current.find('.back').css('display') == 'none') {
+    if(canClick === false || $(current).hasClass('card-flip')) {
         return;
     }
 
     //flips the card over, showing the front
     current.addClass('card-flip');
-    canClick = false;
-    setTimeout(function(){
-        current.find('.back').hide();
-        canClick = true;
-    }, 600);
+
 
     //if first card hasn't been flipped, set this one to first card
     if(first_card == null) {
@@ -185,7 +179,7 @@ function card_clicked(current) {
 
             second_card = find_card(current);
             attempts++;
-            second_card.find('.back').hide();
+            second_card.addClass('card-flip');
 
             made_match();
             display_stats();
@@ -302,22 +296,13 @@ function set_accuracy() {
 
 
 function game_over() {
+    //cancel cards flipping over to show back
     clearTimeout(card_flip_timer);
     $('#defeat').fadeIn();
-    $('.front').css('backface-visibility', 'visible');
 
-    for(var i = 0; i < 18; i++) {
-        if($('.card').eq(i).hasClass('card-flip')) {
-            $('.card').eq(i).find('.front').css('transform', 'rotateY(180deg)');
-        } else {
-            $('.card').eq(i).find('.front').css('transform', 'rotateY(0deg)');
-        }
-    }
+    $('.card').addClass('card-flip');
 
-
-
-
-    $('.back').hide();
+    //$('.back').hide();
 }
 
 function update_hp(val) {
@@ -357,15 +342,34 @@ function update_gold(val) {
 
 
 }
-
-function reset() {
-    games_played++;
-    remove_cards()
+//transitionend: event for when the animation ends
+//when .card animation ends, call reset_card_primer
+//do this for all 18 .cards
+//when it goes through all 18 cards, animation is done
+//remove/randomize cards
+//stop looking for event reset_card_primer
+//reset_card_count back to 18 for next time
+var reset_card_count = 18;
+function reset_card_primer(){
+    if(--reset_card_count>0){
+        return;
+    }
+    console.log('animation done, changing cards')
+    remove_cards();
     randomize_cards();
+    $('.card').off('transitionend',reset_card_primer);
+    reset_card_count = 18;
+}
+function reset() {
+
+
+    games_played++;
+
     reset_stats();
     display_stats();
+    $('.card').on('transitionend', reset_card_primer);
     $('.card').removeClass('card-flip');
-    $('.back').show();
+    //$('.back').show();
     $('#victory').fadeOut();
     $('#defeat').fadeOut();
     canClick = true;
