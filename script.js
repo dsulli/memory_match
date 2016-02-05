@@ -122,40 +122,33 @@ function reset_cards() {
     second_card = null;
 }
 //dan start
+//will run when first card and second card match
 function made_match(second_card){
-    //second_card.find('.front').css('backface-visibility', 'visible');
+    //create new notice above the card that tells you how much gold you earned
+    //notice has a class that makes it already invisible (and styles the text/img)
+    //starts animation
 
+    //rises up 20px from second card's top
+    //fades in
+    //makes second card appear above second card
+    //wait 1000 ms, then make notice disappear
+    //start animation
+    //fades out
+    //descends 30px
+    //at the end of the timeout, remove the notice
 
-    var goldNotice = $('<div>').addClass('plus-gold').html('+300 <img src="images/coins.png" alt="gold icon">');
-    $(goldNotice).animate({
-        top: '-20px',
-        opacity: '1'
-    });
-    $(second_card).append(goldNotice);
-    setTimeout(function() {
-        $(goldNotice).animate({
-            opacity: '0',
-            top: '10px',
-            function(){
-                $(goldNotice).remove(); }
-        });
+    //sets how long the notice stays up until it dies
 
-    }, 1000);
-
-
-    update_hp(lifeSteal);
-    update_gold(300);
-    match_counter++;
+    //if player has life steal stats, add HP to their total HP
+    //give the player 300 gold for making a match
+    //increment match counter for the accuracy stat
     //now that you've made a match, you can't divide by 0 anymore so we can now calculate accuracy
-    set_accuracy();
 
     //now start over
-    reset_cards();
 
     //check if all cards are matched then display a "you win" message
-    if(match_counter === total_matches) {
-        $('#victory').fadeIn();
-    }
+    //victory message fades in
+
 
 }
 //dan end
@@ -349,8 +342,9 @@ function update_gold(val) {
 //remove/randomize cards
 //stop looking for event reset_card_primer
 //reset_card_count back to 18 for next time
-var reset_card_count = 18;
+var reset_card_count = 0;
 function reset_card_primer(){
+    console.log(reset_card_count);
     if(--reset_card_count>0){
         return;
     }
@@ -358,35 +352,30 @@ function reset_card_primer(){
     remove_cards();
     randomize_cards();
     $('.card').off('transitionend',reset_card_primer);
-    reset_card_count = 18;
 }
 //dan start
 function reset() {
-
-
-    games_played++;
-
-    reset_stats();
-    display_stats();
-    $('.card').on('transitionend', reset_card_primer);
-    $('.card').removeClass('card-flip');
-    //$('.back').show();
-    $('#victory').fadeOut();
-    $('#defeat').fadeOut();
-    canClick = true;
-    newHP = 1000;
-    baseHP = 1000;
-    critChance = 0;
-    armor = 0;
-    lifeSteal = 0;
-    passiveGold = 0;
-    $('#hp-count').html(newHP + ' / ' + baseHP);
-    $('#hp-bar').css('width', newHP/baseHP * 100 + '%');
-    currentGold = 300;
-    update_gold(0);
-    clear_inventory();
+    //increments number of games played
+    //set  game stats to 0
+    //show that they have been set to 0
+    //wait for all cards to be flipped back, then randomize cards
+    //flip all cards back;
+    //remove victory message
+    //remove defeat message
+    //player can click
+    //reset HP to 1000
+    //reset base HP to 1000
+    //reset crit chance to 0
+    //reset armor to 0
+    //reset life steal to 0
+    //reset passive gold to 0
+    //reset hp bar numbers to show the updated HP
+    //reset hp bar to fill up
+    //set gold to starting gold
+    //show gold count
+    //get rid of all inventory items
 }
-//dan start
+//dan end
 /* ------------- ITEM FUNCTIONS ------------- */
 
 
