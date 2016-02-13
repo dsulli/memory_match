@@ -34,10 +34,10 @@ var inventoryCount = 0;
 var items = [
     //health pot heals for 50
     {
-        name: 'Health Pot',
+        name: 'Health Potion',
         cost: 150,
         type: 'consume',
-        src: 'images/healthpot.png',
+        src: 'images/items/item_hp.jpg',
         effect: function () {
             update_hp(50);
         }
@@ -45,10 +45,10 @@ var items = [
 
     //armor reduces damage from 100 to 50 from hit
     {
-        name: 'Armor',
+        name: 'Cloth Armor',
         cost: 400,
         type: 'passive',
-        src: 'images/armor.png',
+        src: 'images/items/item_clotharmor.jpg',
         effect: function () {
             armor += .2;
         }
@@ -56,10 +56,10 @@ var items = [
 
     //health item raises base HP by 200
     {
-        name: 'Health Item',
+        name: 'Kindlegem',
         cost: 800,
         type: 'passive',
-        src: 'images/healthitem.png',
+        src: 'images/items/item_kindlegem.jpg',
         effect: function () {
             baseHP += 200;
             update_hp(200);
@@ -90,12 +90,12 @@ var items = [
 
     //Crit chance raises the chances of automatically getting a match
     {
-        name: 'Crit',
+        name: 'Brawlers Gloves',
         cost: 500,
         type: 'passive',
-        src: 'images/crit.png',
+        src: 'images/items/item_brawlersgloves.jpg',
         effect: function () {
-            critChance += .08;
+            critChance += .1;
         }
     }
 ];
@@ -339,7 +339,7 @@ function update_gold(val) {
             $('.gold').removeClass('gold-active');
         }, 500);
     }
-
+    enable_item();
 
 }
 //transitionend: event for when the animation ends
@@ -349,8 +349,9 @@ function update_gold(val) {
 //remove/randomize cards
 //stop looking for event reset_card_primer
 //reset_card_count back to 18 for next time
-var reset_card_count = 18;
+var reset_card_count = 0;
 function reset_card_primer(){
+    console.log(reset_card_count);
     if(--reset_card_count>0){
         return;
     }
@@ -358,18 +359,17 @@ function reset_card_primer(){
     remove_cards();
     randomize_cards();
     $('.card').off('transitionend',reset_card_primer);
-    reset_card_count = 18;
 }
+//dan start
 function reset() {
-
-
+    //increments number of games played
     games_played++;
-
-    reset_stats();
-    display_stats();
+    reset_stats(); //set  game stats to 0
+    display_stats(); //show that they have been set to 0
+    //wait for all cards to be flipped back, then randomize cards
+    reset_card_count = $('.card-flip').length;
     $('.card').on('transitionend', reset_card_primer);
-    $('.card').removeClass('card-flip');
-    //$('.back').show();
+    $('.card').removeClass('card-flip'); //flip all cards back;
     $('#victory').fadeOut();
     $('#defeat').fadeOut();
     canClick = true;
@@ -411,10 +411,38 @@ function clear_inventory() {
     inventoryCount = 0;
 }
 
+function can_afford(itemcost) {
+    if(currentGold >= itemcost) {
+        return true;
+    }
+    return false;
+}
+
+/* TODO: REWRITE THIS PLS
+* IT'S HORRIBLE */
+function enable_item() {
+    var item;
+    for(var i = 0; i < items.length; i++) {
+        for(var j = 0; j < items.length; j++) {
+            if($('.shop-item .item-slot').eq(i).find('img').attr('alt') === items[j].name) {
+                item = items[j];
+                if(!can_afford(item.cost)) {
+                    $('.shop-item .item-slot').eq(i).addClass('disabled');
+                }
+                else {
+                    $('.shop-item .item-slot').eq(i).removeClass('disabled');
+                }
+            }
+        }
+
+    }
+
+}
+
 function item_clicked(item) {
     var item_bought;
 
-
+    console.log("item was clicked");
 
     //search for that item's info
     for(var i = 0; i < items.length; i++) {
@@ -423,13 +451,12 @@ function item_clicked(item) {
         }
     }
 
-    if(item_bought.name != 'Health Pot' && inventoryCount > 3) {
+    console.log(item_bought.cost);
+    if(item_bought.name != 'Health Potion' && inventoryCount > 3) {
         return;
     }
-
     //Check if item can be bought
     if(currentGold >= item_bought.cost) {
-
 
         //check if item is a consumable, then use immediately
         if(item_bought.type == "consume"){
@@ -444,7 +471,7 @@ function item_clicked(item) {
 
         //subtract item cost from current gold
         update_gold(-(item_bought.cost));
-        if(item_bought.name != 'Health Pot') {
+        if(item_bought.name != 'Health Potion') {
             inventoryCount++;
         }
 

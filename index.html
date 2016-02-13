@@ -78,9 +78,9 @@ earn ranks
         <div class="items-header"><h2>Items</h2></div>
 
         <div class="row" id="inventory">
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
-            <div class="item-slot"></div>
+            <div class="item-slot empty-slot"></div>
+            <div class="item-slot empty-slot"></div>
+            <div class="item-slot empty-slot"></div>
         </div>
     </div>
 
@@ -169,22 +169,34 @@ earn ranks
         </div>
         <div class="row">
             <div class="shop-item">
-                <div class="item-slot"><img src="images/healthpot.png" alt="Health Pot"></div>
+                <div class="item-slot"><img src="images/items/item_hp.jpg" alt="Health Potion"></div>
                 <p>150</p>
-                <div class="tooltip"><p>Active: When bought, used instantly.</p>
-                <p>Heals 50 HP</p></div>
+                <div class="tooltip">
+                    <span class="item-name">Health Potion</span>
+                    <span class="item-cost"><img src="images/coins.png" alt="gold icon"> 150</span>
+                    <span class="item-info">Active: When bought, used instantly.</span>
+                    <span>Heals 50 HP</span>
+                </div>
             </div>
             <div class="shop-item">
-                <div class="item-slot"><img src="images/healthitem.png" alt="Health Item"></div>
+                <div class="item-slot"><img src="images/items/item_kindlegem.jpg" alt="Kindlegem"></div>
                 <p>800</p>
-                <div class="tooltip"><p>Passive: Inventory item, effect permanent.</p>
-                    <p>Raises max HP by 200.</p></div>
+                <div class="tooltip">
+                    <span class="item-name">Kindlegem</span>
+                    <span class="item-cost"><img src="images/coins.png" alt="gold icon"> 800</span>
+                    <span class="item-info">Passive: Inventory item, effect permanent.</span>
+                    <span>Raises max HP by 200.</span>
+                </div>
             </div>
             <div class="shop-item">
-                <div class="item-slot"><img src="images/armor.png" alt="Armor"></div>
+                <div class="item-slot"><img src="images/items/item_clotharmor.jpg" alt="Cloth Armor"></div>
                 <p>400</p>
-                <div class="tooltip"><p>Passive: Inventory item, effect permanent.</p>
-                    <p>Reduces damage by 20%.</p></div>
+                <div class="tooltip">
+                    <span class="item-name">Cloth Armor</span>
+                    <span class="item-cost"><img src="images/coins.png" alt="gold icon"> 400</span>
+                    <span class="item-info">Passive: Inventory item, effect permanent.</span>
+                    <span>Reduces damage by 20%.</span>
+                </div>
             </div>
         </div>
 
@@ -192,20 +204,32 @@ earn ranks
             <div class="shop-item">
                 <div class="item-slot"><img src="images/ancientcoin.png" alt="Ancient Coin"></div>
                 <p>300</p>
-                <div class="tooltip"><p>Passive: Inventory item, effect permanent.</p>
-                    <p>Gain +30 gold on mismatch.</p></div>
+                <div class="tooltip">
+                    <span class="item-name">Ancient Coin</span>
+                    <span class="item-cost"><img src="images/coins.png" alt="gold icon"> 300</span>
+                    <span class="item-info">Passive: Inventory item, effect permanent.</span>
+                    <span>Gain +30 gold on mismatch.</span>
+                </div>
             </div>
             <div class="shop-item">
                 <div class="item-slot"><img src="images/lifesteal.png" alt="Life Steal"></div>
                 <p>900</p>
-                <div class="tooltip"><p>Passive: Inventory item, effect permanent.</p>
-                    <p>Gain +30 HP on match.</p></div>
+                <div class="tooltip">
+                    <span class="item-name">Vampiric Scepter</span>
+                    <span class="item-cost"><img src="images/coins.png" alt="gold icon"> 900</span>
+                    <span class="item-info">Passive: Inventory item, effect permanent.</span>
+                    <span>Gain +30 HP on match.</span>
+                </div>
             </div>
             <div class="shop-item">
-                <div class="item-slot"><img src="images/crit.png" alt="Crit"></div>
+                <div class="item-slot"><img src="images/items/item_brawlersgloves.jpg" alt="Brawlers Gloves"></div>
                 <p>500</p>
-                <div class="tooltip"><p>Passive: Inventory item, effect permanent.</p>
-                    <p>Raises crit chance by 8%. Critical strike randomly gives you a match on picking an unmatched card.</p></div>
+                <div class="tooltip">
+                    <span class="item-name">Brawler's Gloves</span>
+                    <span class="item-cost"><img src="images/coins.png" alt="gold icon"> 500</span>
+                    <span class="item-info">Passive: Inventory item, effect permanent.</span>
+                    <span>Raises crit chance by 8%. Critical strike randomly gives you a match on picking an unmatched card.</span>
+                </div>
             </div>
         </div>
 
