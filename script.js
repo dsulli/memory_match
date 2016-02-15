@@ -71,7 +71,7 @@ var items = [
         name: 'Ancient Coin',
         cost: 300,
         type: 'passive',
-        src: 'images/ancientcoin.png',
+        src: 'images/items/item_ancientcoin.jpg',
         effect: function () {
             passiveGold += 30;
         }
@@ -79,10 +79,10 @@ var items = [
 
     //Life steal revives hp upon killing
     {
-        name: 'Life Steal',
+        name: 'Vampiric Scepter',
         cost: 900,
         type: 'passive',
-        src: 'images/lifesteal.png',
+        src: 'images/items/item_vampiricscepter.jpg',
         effect: function () {
             lifeSteal += 30;
         }
