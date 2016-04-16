@@ -136,9 +136,9 @@ function made_match(second_card){
         $(goldNotice).animate({
             opacity: '0',
             top: '10px',
-            function(){
-                $(goldNotice).remove(); }
-        });
+
+        }, function(){
+            $(goldNotice).remove(); });
 
     }, 1000);
 
@@ -412,10 +412,8 @@ function clear_inventory() {
 }
 
 function can_afford(itemcost) {
-    if(currentGold >= itemcost) {
-        return true;
-    }
-    return false;
+    return currentGold >= itemcost;
+
 }
 
 /* TODO: REWRITE THIS PLS
