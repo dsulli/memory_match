@@ -483,6 +483,22 @@ $(document).ready(function() {
     randomize_cards();
     display_stats();
 
+    $('#how2play-modal').click(function() {
+        $('.overlay').fadeIn();
+        $('.info').fadeIn('slow').animate(
+            { top: '15vh'},
+            { queue: false, duration: 'slow' }
+        );
+    });
+
+    $('.modal-btn').click(function() {
+        $('.overlay').fadeOut();
+        $('.info').fadeOut('fast').animate(
+            { top: 0},
+            { queue: false, duration: 'fast' }
+        );
+    });
+
     $('.card').click(function() {
         card_clicked($(this));
     });

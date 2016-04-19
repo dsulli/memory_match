@@ -43,7 +43,7 @@ header {
     text-transform: uppercase;
     font-size: 2em;
     margin: 10px 20px -5px 20px;
-    color: #fae497;
+    color: #525252;
 
 }
 
@@ -65,13 +65,16 @@ nav li {
 }
 
 nav li a {
+    font-family: 'Marcellus', serif;
+
     font-size: 1em;
-    color: #AA9743;
+    color: #3B3939;
     text-decoration: none;
 }
 
 nav li a:hover {
-    color: #51A3D6;
+    color: #637873;
+    cursor: pointer;
 }
 
 .stats, .shop {
@@ -321,7 +324,6 @@ h2 {
 
 .front, .back {
     backface-visibility: hidden;
-    height: 100%;
 
 
 }
@@ -335,11 +337,6 @@ h2 {
     top: 0;
     left: 0;
     opacity: .9;
-}
-
-.back img {
-    width: 100%;
-    height: 100%;
 }
 
 .card-flip  {
@@ -442,6 +439,46 @@ h2 {
     margin-right: 5px;
     width: 1em;
 }
+
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .7;
+    display: none;
+}
+
+.info {
+    width: 55%;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    left: 49%;
+    transform: translateX(-49.5%);
+    border-style: solid;
+    border-width: 27px;
+    -moz-border-image: url(images/border-img-black.jpg) 27;
+    -webkit-border-image: url(images/border-img-black.jpg) 27;
+    -o-border-image: url(images/border-img-black.jpg) 27;
+    border-image: url(images/border-img-black.jpg) 27 fill;
+    box-sizing: border-box;
+    color: #AA9743;
+    margin: 5px 10px 10px 10px;
+    background-color: #1B1B1B;
+    display: none;
+}
+
+.info h2 {
+    background-color: #292929;
+    padding: 10px;
+}
+
+
 
 @media screen and (max-width: 1220px) {
 
