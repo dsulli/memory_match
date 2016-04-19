@@ -3,8 +3,8 @@
 }
 
 body {
-    background: linear-gradient(#333, #111);
-    background-image: url('images/tempbackground.jpg');
+    /*background: linear-gradient(#333, #111);*/
+    background-image: url('images/summoners_rift.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -103,6 +103,7 @@ nav li a:hover {
 
 .stats-container, .shop-container {
     height: 400px;
+    opacity: .9;
 }
 
 .stats-header, .shop-header, .items-header {
@@ -143,7 +144,7 @@ h2 {
 }
 
 #hp-container {
-    width: 160px;
+    max-width: 160px;
     height: 20px;
     background-color: #101C1B;
     border: 1px solid #1E6E74;
@@ -333,7 +334,12 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
+    opacity: .9;
+}
 
+.back img {
+    width: 100%;
+    height: 100%;
 }
 
 .card-flip  {
@@ -452,7 +458,7 @@ h2 {
 }
 
 
-@media screen and (max-width: 1010px) {
+@media screen and (max-width: 1065px) {
 
     .main-container {
         flex-flow: row wrap;
@@ -460,26 +466,36 @@ h2 {
     }
 
     #game-area {
-        width: 98%;
+        width: 100%;
         order: 0;
         height: auto;
+        margin: auto;
     }
 
     .stats, .shop {
         float: none;
         order: 2;
-        width: 49%;
+        width: 50%;
         height: auto;
+        margin: auto;
     }
 
     .stats-container, .shop-container {
+        width: 96%;
         height: 310px;
-        margin: 0 2px;
         border-image-width: 12px;
         border-width: 12px;
         padding: 0;
         box-sizing: border-box;
 
+    }
+
+    .stats-container {
+        margin: 1% 0 0 4%;
+    }
+
+    .shop-container {
+        margin: 1% 4% 0 0;
     }
 
 
@@ -514,6 +530,12 @@ h2 {
         display: none;
     }
 
+    .row {
+        width: 100%;
+    }
+
+
+
 }
 
 @media screen and (max-width: 768px) {
@@ -528,5 +550,23 @@ h2 {
 
     .stats, .shop {
         width: 49%;
+    }
+
+    .reset {
+        width: 90%;
+    }
+
+    #hp-count {
+        font-size: .7em;
+    }
+
+    .gold {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    h2 {
+        font-size: .9em;
     }
 }
