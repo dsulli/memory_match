@@ -3,7 +3,7 @@
 }
 
 body {
-    /*background: linear-gradient(#333, #111);*/
+    background-color: #000;
     background-image: url('images/summoners_rift.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,12 +68,12 @@ nav li a {
     font-family: 'Marcellus', serif;
 
     font-size: 1em;
-    color: #3B3939;
+    color: #3A5491;
     text-decoration: none;
 }
 
 nav li a:hover {
-    color: #637873;
+    color: #F2FBFF;
     cursor: pointer;
 }
 
@@ -142,7 +142,7 @@ h2 {
     padding-right: 10px;
 }
 
-.value, #total-gold {
+.value, #total-gold, #total-gold-prev {
     color: #fae497;
 }
 
@@ -174,7 +174,7 @@ h2 {
     font-size: .9em;
 }
 
-.reset {
+.reset, .modal-btn {
     display: block;
     width: 50%;
     margin: 15px auto 30px auto;
@@ -455,7 +455,7 @@ h2 {
 
 .info {
     width: 55%;
-    height: 400px;
+    min-height: 400px;
     position: absolute;
     top: 0;
     left: 49%;
@@ -471,11 +471,78 @@ h2 {
     margin: 5px 10px 10px 10px;
     background-color: #1B1B1B;
     display: none;
+    padding: 20px;
 }
 
 .info h2 {
     background-color: #292929;
     padding: 10px;
+}
+
+.info p {
+    margin: 1em 0;
+    font-size: .9em;
+    text-indent: 2em;
+
+}
+
+.gold-prev {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.demo-item {
+    text-align: center;
+}
+
+.demo-item .shop-item{
+    margin: 0 auto;
+    width: auto;
+}
+
+.demo-item .tooltip {
+    display: inline-block;
+
+}
+
+.demo-item p {
+    text-indent: 0;
+    margin: 0;
+}
+
+.modal-btn {
+    margin-top: 35px;
+    font-size: 1em;
+}
+
+.x {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    float: right;
+    margin: 8px;
+}
+
+.x:hover {
+    cursor: pointer;
+}
+
+.x .cross1 {
+    width: 2px;
+    height: 30px;
+    background-color: #777;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 15px;
+}
+
+.x .cross2 {
+    width: 2px;
+    height: 30px;
+    background-color: #777;
+    transform: rotate(-45deg);
+    position: absolute;
+    right: 15px;
 }
 
 
@@ -569,6 +636,10 @@ h2 {
 
     .row {
         width: 100%;
+    }
+
+    .info {
+        width: 90%;
     }
 
 

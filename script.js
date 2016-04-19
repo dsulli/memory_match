@@ -478,10 +478,14 @@ function item_clicked(item) {
 }
 
 $(document).ready(function() {
+
+
+
     update_gold(0);
     update_hp(0);
     randomize_cards();
     display_stats();
+
 
     $('#how2play-modal').click(function() {
         $('.overlay').fadeIn();
@@ -491,7 +495,7 @@ $(document).ready(function() {
         );
     });
 
-    $('.modal-btn').click(function() {
+    $('.modal-btn, .x').click(function() {
         $('.overlay').fadeOut();
         $('.info').fadeOut('fast').animate(
             { top: 0},
@@ -503,18 +507,21 @@ $(document).ready(function() {
         card_clicked($(this));
     });
 
-    $('.shop-item').click(function() {
+    $('.shop .shop-item').click(function() {
         item_clicked($(this));
     });
 
-    $('.shop-item').mouseenter(function() {
-       $(this).find('.tooltip').fadeIn();
+    $('.shop .shop-item').mouseenter(function() {
+        if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            $(this).find('.tooltip').fadeIn();
+        }
 
     });
 
-    $('.shop-item').mouseleave(function() {
-        $(this).find('.tooltip').fadeOut(0);
-
+    $('.shop .shop-item').mouseleave(function() {
+        if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            $(this).find('.tooltip').fadeOut(0);
+        }
     });
 
     $('.reset').click(function() {
