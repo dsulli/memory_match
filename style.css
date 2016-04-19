@@ -4,6 +4,7 @@
 
 body {
     background: linear-gradient(#333, #111);
+    background-image: url('images/tempbackground.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -98,6 +99,10 @@ nav li a:hover {
     color: #AA9743;
     margin: 5px 10px 10px 10px;
     background-color: rgba(15, 35, 34, .9);
+}
+
+.stats-container, .shop-container {
+    height: 400px;
 }
 
 .stats-header, .shop-header, .items-header {
@@ -197,10 +202,8 @@ h2 {
 
 .item-slot {
     display: inline-block;
-    min-width: 30px;
-    min-height: 30px;
-    max-width: 70px;
-    max-height: 70px;
+    width: 50px;
+    height: 50px;
     background-color: #101C1B;
     border: 1px solid #fae497;
     position: relative;
@@ -212,8 +215,9 @@ h2 {
     top: -1px;
     left: -1px;
     background-color: rgba(0,0,0,.5);
-    width: 102%;
-    height: 102%;
+    border: 1px solid  #777;
+    width: 52px;
+    height: 52px;
     box-sizing: border-box;
 }
 
@@ -433,15 +437,30 @@ h2 {
     width: 1em;
 }
 
+@media screen and (max-width: 1220px) {
 
-@media screen and (max-width: 900px) {
+    .item-slot {
+        width: 40px;
+        height: 40px;
+    }
+
+    .disabled::after {
+        width: 42px;
+        height: 42px;
+
+    }
+}
+
+
+@media screen and (max-width: 1010px) {
 
     .main-container {
         flex-flow: row wrap;
+        width: 60%;
     }
 
     #game-area {
-        width: 100%;
+        width: 98%;
         order: 0;
         height: auto;
     }
@@ -449,23 +468,27 @@ h2 {
     .stats, .shop {
         float: none;
         order: 2;
-        width: 50%;
+        width: 49%;
         height: auto;
     }
 
     .stats-container, .shop-container {
-        height: auto;
+        height: 310px;
         margin: 0 2px;
         border-image-width: 12px;
         border-width: 12px;
         padding: 0;
+        box-sizing: border-box;
+
     }
+
+
 
     header {
         height: 8vh;
     }
     .header-container {
-        width: 100%;
+        width: 98%;
     }
 
     #title {
@@ -493,7 +516,17 @@ h2 {
 
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
 
+    .main-container{
+        width: 100%;
+    }
 
+    #game-area {
+        width: 98%;
+    }
+
+    .stats, .shop {
+        width: 49%;
+    }
 }
