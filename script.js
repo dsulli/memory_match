@@ -487,10 +487,11 @@ $(document).ready(function() {
     display_stats();
 
 
-    $('#how2play-modal').click(function() {
+    $('#how2play-modal, #items-modal, #about-modal').click(function() {
+        var header_height = $('header').height() + 'px';
         $('.overlay').fadeIn();
         $('.info').fadeIn('slow').animate(
-            { top: '15vh'},
+            { top: header_height },
             { queue: false, duration: 'slow' }
         );
     });
@@ -498,7 +499,7 @@ $(document).ready(function() {
     $('.modal-btn, .x').click(function() {
         $('.overlay').fadeOut();
         $('.info').fadeOut('fast').animate(
-            { top: 0},
+            { top: 0 },
             { queue: false, duration: 'fast' }
         );
     });

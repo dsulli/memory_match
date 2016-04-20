@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html ng-app="routeApp">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +9,9 @@
     <link href='https://fonts.googleapis.com/css?family=Palanquin|Marcellus' rel='stylesheet' type='text/css'>
     <link href="style.css" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="http://code.angularjs.org/1.3.15/angular-route.js"></script>
+    <script src="routes.js"></script>
     <script src="script.js"></script>
 </head>
 <body>
@@ -19,9 +22,9 @@
         <div id="title">League <span>of</span> Matching</div>
         <nav>
             <ul>
-                <li><a id="how2play-modal">How to Play</a></li>
-                <li><a id="items-modal">Items</a></li>
-                <li><a id="about-modal">About this Game</a></li>
+                <li><a href="#/how2play" id="how2play-modal">How to Play</a></li>
+                <li><a href="#/items" id="items-modal">Items</a></li>
+                <li><a href="#/about" id="about-modal">About this Game</a></li>
             </ul>
         </nav>
     </div>
@@ -172,48 +175,13 @@
 
 <div class="overlay"></div>
 <div class="info">
-    <div class="x">
+    <a href="#">
+        <div class="x">
         <div class="cross1"></div>
         <div class="cross2"></div>
-    </div>
-    <h2>How to Play</h2>
-    <p>
-        League of Matching plays like a standard memory match game: flip over two cards at a time and try
-        to match them each turn. The unique part of this game is that you have a health bar:
-    </p>
-    <div id="hp-container">
-        <div id="hp-bar"></div>
-        <div id="hp-count">1000/1000</div>
-    </div>
-
-    <p>
-        You start out at 1000 HP and lose 100 HP on each turn you mismatch cards. If you reach 0 HP, it's
-        game over. However, you can buy items to
-        help you. You start out with 300 gold, and can earn 300 more gold each time you make a match.
-    </p>
-    <div class="gold gold-prev">
-        <img src="images/coins.png" alt="gold icon">
-        <span id="total-gold-prev">300</span>
-    </div>
-    <p>
-        Items can boost your health, reduce the HP you lose on mismatch, help you earn gold, and even give
-        you a chance to make a match on the first card you flip! You can view the description of what each
-        item does by hovering over the item icons or by clicking on the items link at the top of the page.
-        The gold cost of the item is right below the item's icon.
-    </p>
-    <div class="demo-item">
-        <div class="shop-item">
-            <div class="item-slot"><img src="images/items/item_ancientcoin.jpg" alt="Ancient Coin"></div>
-            <p>300</p>
-            <div class="tooltip">
-                <span class="item-name">Ancient Coin</span>
-                <span class="item-cost"><img src="images/coins.png" alt="gold icon"> 300</span>
-                <span class="item-info">Passive: Inventory item, effect permanent.</span>
-                <span>Gain +30 gold on mismatch.</span>
-            </div>
         </div>
-    </div>
-    <button class="modal-btn">Got It!</button>
+    </a>
+    <div ng-view></div>
 </div>
 
 </body>
