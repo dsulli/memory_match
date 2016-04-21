@@ -645,6 +645,7 @@ h2 {
 }
 
 
+
 @media screen and (max-width: 1065px) {
 
     .main-container {
@@ -685,11 +686,10 @@ h2 {
         margin: 1% 4% 0 0;
     }
 
-
-
     header {
-        height: 8vh;
+        height: 11vh;
     }
+
     .header-container {
         width: 98%;
     }
