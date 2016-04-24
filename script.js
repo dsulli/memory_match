@@ -1,8 +1,4 @@
 /*
-To do at some point:
-- Make object oriented (cards and items)
-- "You have slain an enemy" "Double Kill" etc
- */
 
 var first_card = null;
 var second_card = null;
@@ -29,7 +25,7 @@ var inventoryCount = 0;
 * make an array with the cards in them
 * randomly select a card and slice it out of the array and push it onto a new array
 *
-* */
+*
 
 var items = [
     //health pot heals for 50
@@ -100,7 +96,7 @@ var items = [
     }
 ];
 
-/* ------------- CARD FUNCTIONS ------------- */
+------------- CARD FUNCTIONS -------------
 
 //function for when first and second cards don't match, shows the backs of them again
 function showBack(first, second) {
@@ -268,7 +264,7 @@ function remove_cards() {
 }
 
 
-/* ------------- GAME STAT FUNCTIONS ------------- */
+/* ------------- GAME STAT FUNCTIONS -------------
 
 //display stats
 function display_stats() {
@@ -291,7 +287,7 @@ function set_accuracy() {
 }
 
 
-/* ------------- GAME PLAY FUNCTIONS ------------- */
+------------- GAME PLAY FUNCTIONS -------------
 
 
 
@@ -386,7 +382,7 @@ function reset() {
     clear_inventory();
 }
 
-/* ------------- ITEM FUNCTIONS ------------- */
+/* ------------- ITEM FUNCTIONS -------------
 
 
 function update_inventory(item) {
@@ -396,7 +392,7 @@ function update_inventory(item) {
         if empty, put purchased item into slot
         if not empty, move on
         if there are no empty slots, do nothing, don't buy item
-     */
+
 
     for(var i = 0; i < 3; i++) {
         if($('#inventory .item-slot:nth-child(' + (i + 1) + ')').html() == '') {
@@ -417,7 +413,7 @@ function can_afford(itemcost) {
 }
 
 /* TODO: REWRITE THIS PLS
-* IT'S HORRIBLE */
+* IT'S HORRIBLE
 function enable_item() {
     var item;
     for(var i = 0; i < items.length; i++) {
@@ -476,16 +472,17 @@ function item_clicked(item) {
     }
 
 }
-
+*/
 $(document).ready(function() {
 
+    /* --- Init --- */
 
+    //update_gold(0);
+    //update_hp(0);
+    //randomize_cards();
+    //display_stats();
 
-    update_gold(0);
-    update_hp(0);
-    randomize_cards();
-    display_stats();
-
+    /* --- Modals --- */
 
     $('#how2play-modal, #items-modal, #about-modal').click(function() {
         var header_height = $('header').height() + 'px';
@@ -504,9 +501,13 @@ $(document).ready(function() {
         );
     });
 
+    /* --- Card Click --- */
+
     $('.card').click(function() {
-        card_clicked($(this));
+        cards.card_clicked($(this));
     });
+
+    /* --- Shop --- */
 
     $('.shop .shop-item').click(function() {
         item_clicked($(this));
@@ -516,7 +517,6 @@ $(document).ready(function() {
         if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             $(this).find('.tooltip').fadeIn();
         }
-
     });
 
     $('.shop .shop-item').mouseleave(function() {
@@ -524,6 +524,8 @@ $(document).ready(function() {
             $(this).find('.tooltip').fadeOut(0);
         }
     });
+
+    /* --- Reset --- */
 
     $('.reset').click(function() {
        reset();
