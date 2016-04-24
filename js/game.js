@@ -3,38 +3,32 @@ function Game() {
     this.total_matches = 9; //change this when you add more cards
 
     this.init = function() {
-        update_gold(0);
-        update_hp(0);
-        randomize_cards();
-        display_stats();
+        player.update_gold(0);
+        player.update_hp(0);
+        cards.randomize_cards();
+        this.display_stats();
     };
 
-    var display_stats = function() {
-        $('.games-played .value').text(games_played);
-        $('.attempts .value').text(attempts);
-        $('.accuracy .value').text(accuracy + "%");
+    this.display_stats = function() {
+        $('.games-played .value').text(player.games_played);
+        $('.attempts .value').text(player.attempts);
+        $('.accuracy .value').text(player.accuracy + "%");
     };
 
-    var reset_stats = function() {
-        attempts = 0;
-        accuracy = 0;
-        match_counter = 0;
-        display_stats();
+    this.reset_stats = function() {
+        player.attempts = 0;
+        player.accuracy = 0;
+        player.match_counter = 0;
+        this.display_stats();
     };
 
-    //only set accuracy when called so it doesn't divide 0 by 0
-    var set_accuracy = function() {
-        accuracy = Math.round((match_counter / attempts) * 100);
-    };
-
-    var game_over = function() {
+    this.game_over = function() {
         //cancel cards flipping over to show back
-        clearTimeout(card_flip_timer);
+        clearTimeout(cards.card_flip_timer);
         $('#defeat').fadeIn();
 
         $('.card').addClass('card-flip');
 
-        //$('.back').hide();
     };
 
     //transitionend: event for when the animation ends
@@ -44,40 +38,43 @@ function Game() {
     //remove/randomize cards
     //stop looking for event reset_card_primer
     //reset_card_count back to 18 for next time
+
+
     var reset_card_count = 0;
+
     var reset_card_primer = function(){
         console.log(reset_card_count);
         if(--reset_card_count>0){
             return;
         }
         console.log('animation done, changing cards')
-        remove_cards();
-        randomize_cards();
-        $('.card').off('transitionend',reset_card_primer);
+        cards.remove_cards();
+        cards.randomize_cards();
+        $('.card').off('transitionend', reset_card_primer);
     };
 
-    var reset = function() {
+    this.reset = function() {
         //increments number of games played
-        games_played++;
-        reset_stats(); //set  game stats to 0
-        display_stats(); //show that they have been set to 0
+        player.games_played++;
+        this.reset_stats(); //set  game stats to 0
+        this.display_stats(); //show that they have been set to 0
         //wait for all cards to be flipped back, then randomize cards
         reset_card_count = $('.card-flip').length;
         $('.card').on('transitionend', reset_card_primer);
         $('.card').removeClass('card-flip'); //flip all cards back;
         $('#victory').fadeOut();
         $('#defeat').fadeOut();
-        canClick = true;
-        newHP = 1000;
-        baseHP = 1000;
-        critChance = 0;
-        armor = 0;
-        lifeSteal = 0;
-        passiveGold = 0;
-        $('#hp-count').html(newHP + ' / ' + baseHP);
-        $('#hp-bar').css('width', newHP/baseHP * 100 + '%');
-        currentGold = 300;
-        update_gold(0);
-        clear_inventory();
+        cards.canClick = true;
+        player.currentHP = 1000;
+        player.baseHP = 1000;
+        player.critChance = 0;
+        player.armor = 0;
+        player.lifeSteal = 0;
+        player.passiveGold = 0;
+        $('#hp-count').html(player.currentHP + ' / ' + player.baseHP);
+        $('#hp-bar').css('width', player.currentHP/player.baseHP * 100 + '%');
+        player.currentGold = 300;
+        player.update_gold(0);
+        player.clear_inventory();
     };
 }

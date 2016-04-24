@@ -39,7 +39,7 @@ $(document).ready(function() {
     /* --- Shop --- */
 
     $('.shop .shop-item').click(function() {
-        item_clicked($(this));
+        items.item_clicked($(this));
     });
 
     $('.shop .shop-item').mouseenter(function() {
@@ -57,7 +57,7 @@ $(document).ready(function() {
     /* --- Reset --- */
 
     $('.reset').click(function() {
-        reset();
+        game.reset();
     });
 
 

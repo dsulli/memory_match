@@ -4,18 +4,18 @@ function Cards() {
 
     var first_card = null;
     var second_card = null;
-    var canClick = true;
-    var card_flip_timer = null;
+    this.canClick = true;
+    this.card_flip_timer = null;
 
 
     //function for when first and second cards don't match, shows the backs of them again
     var showBack = function(first, second) {
         canClick = false;
-        card_flip_timer = setTimeout(function(){
-            card_flip_timer = null;
+        cards.card_flip_timer = setTimeout(function(){
+            cards.card_flip_timer = null;
             first.removeClass('card-flip');
             second.removeClass('card-flip');
-            canClick = true;
+            cards.canClick = true;
 
         }, 1250);
 
@@ -41,25 +41,24 @@ function Cards() {
         setTimeout(function() {
             $(goldNotice).animate({
                 opacity: '0',
-                top: '10px',
-
+                top: '10px'
             }, function(){
                 $(goldNotice).remove(); });
 
         }, 1000);
 
 
-        update_hp(lifeSteal);
-        update_gold(300);
-        match_counter++;
+        player.update_hp(player.lifeSteal);
+        player.update_gold(300);
+        player.match_counter++;
         //now that you've made a match, you can't divide by 0 anymore so we can now calculate accuracy
-        set_accuracy();
+        player.set_accuracy();
 
         //now start over
         reset_cards();
 
         //check if all cards are matched then display a "you win" message
-        if(match_counter === total_matches) {
+        if(player.match_counter === game.total_matches) {
             $('#victory').fadeIn();
         }
 
@@ -69,7 +68,7 @@ function Cards() {
         //check if can click
         //check if the card is already flipped
         //then do nothing if either are true
-        if(canClick === false || $(current).hasClass('card-flip')) {
+        if(this.canClick === false || current.hasClass('card-flip')) {
             return;
         }
 
@@ -81,22 +80,20 @@ function Cards() {
         if(first_card == null) {
             first_card = current;
 
-            if(Math.random() <= critChance) {
+            if(Math.random() <= player.critChance) {
 
                 second_card = find_card(current);
-                attempts++;
+                player.attempts++;
                 second_card.addClass('card-flip');
 
                 made_match();
-                display_stats();
             }
 
-            return;
         }
         //if first card has been set, set this one to second card
         else {
             second_card = current;
-            attempts++;
+            player.attempts++;
 
             //compares the two image source values
             //if they are the same
@@ -107,16 +104,17 @@ function Cards() {
             else { //cards don't match
                 showBack(first_card, second_card);
                 reset_cards();
-                if(match_counter > 0) {
-                    set_accuracy();
+                if(player.match_counter > 0) {
+                    player.set_accuracy();
                 }
-                update_gold(passiveGold);
-                update_hp(-100 + (100 * armor));
+                player.update_gold(player.passiveGold);
+                player.update_hp(-100 + (100 * player.armor));
             }
 
             //refresh stats after every attempt
-            display_stats();
         }
+        game.display_stats();
+
     };
 
     var find_card = function(card) {
@@ -132,7 +130,7 @@ function Cards() {
         }
     };
 
-    var randomize_cards = function() {
+    this.randomize_cards = function() {
         var images = [
             'images/card_annie.png',
             'images/card_cait.png',
@@ -165,11 +163,11 @@ function Cards() {
         for (var j = 0; j < imagesCopy.length; j++) {
             $('#game-area .card:nth-child(' + (j + 1) + ')').append('<div class="front"><img src="' + imagesCopy[j] + '"></div>');
         }
-        return imagesCopy;
+        //return imagesCopy;
 
     };
 
-    var remove_cards = function() {
+    this.remove_cards = function() {
         $('.front').remove();
     };
 
