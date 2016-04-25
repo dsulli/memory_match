@@ -70,7 +70,8 @@ function Player() {
     };
 
     this.clear_inventory = function() {
-        $('.item-slot').empty();
+        $('#inventory .item-slot').empty().addClass('empty-slot');
+
         this.inventoryCount = 0;
     };
 

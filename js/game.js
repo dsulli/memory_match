@@ -63,7 +63,6 @@ function Game() {
         reset_card_count = $('.card-flip').length;
         $('.card').on('transitionend', reset_card_primer);
         $('.card').removeClass('card-flip'); //flip all cards back;
-        $('.item-slot').addClass('empty-slot');
         $('#victory').fadeOut();
         $('#defeat').fadeOut();
         cards.canClick = true;
