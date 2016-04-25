@@ -1,16 +1,22 @@
 
 function Player() {
+
+    //player stats
     this.match_counter = 0;
     this.attempts = 0;
     this.accuracy = 0;
     this.games_played = 0;
     this.currentHP = 1000;
     this.currentGold = 300;
+
+    //item stats
     this.baseHP = 1000;
     this.critChance = 0;
     this.armor = 0;
     this.lifeSteal = 0;
     this.passiveGold = 0;
+
+    //inventory
     this.inventoryCount = 0;
 
 

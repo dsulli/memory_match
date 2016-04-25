@@ -80,13 +80,14 @@ function Cards() {
         //check if can click
         //check if the card is already flipped
         //then do nothing if either are true
+        console.log('clicked');
+
         if(this.canClick === false || current.hasClass('card-flip')) {
             return;
         }
 
         //flips the card over, showing the front
         current.addClass('card-flip');
-
 
         //if first card hasn't been flipped, set this one to first card
         if(first_card == null) {
@@ -157,17 +158,26 @@ function Cards() {
 
         }
 
-        //append front faces to cards
-        var j = 0;
+        for(var j = 0; j < game.total_cards; j++) {
+            var card = $('<div>').addClass('card');
+            var back = $('<div>').addClass('back').html('<img src="images/card-back-helmet.png">');
+            var front = $('<div>').addClass('front').html('<img src="' + imagesCopy[j] + '"></div>');
+            card.append(back);
+            card.append(front);
+            $('#game-area').append(card);
+        }
 
-        $('.card').each(function(){
-           $(this).append('<div class="front"><img src="' + imagesCopy[j++] + '"></div>');
-        });
+        //append front faces to cards
+        //var j = 0;
+        //
+        //$('.card').each(function(){
+        //   $(this).append('<div class="front"><img src="' + imagesCopy[j++] + '"></div>');
+        //});
 
     };
 
-    this.remove_card_fronts = function() {
-        $('.front').remove();
+    this.remove_cards = function() {
+        $('.card').remove();
     };
 
 

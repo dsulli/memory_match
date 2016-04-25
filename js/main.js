@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     /* --- Card Click --- */
 
-    $(".card").click(function() {
+    $('#game-area').on('click', '.card', function() {
         cards.card_clicked($(this));
     });
 

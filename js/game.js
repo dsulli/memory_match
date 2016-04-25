@@ -50,7 +50,7 @@ function Game() {
             return;
         }
         console.log('animation done, changing cards');
-        cards.remove_card_fronts();
+        cards.remove_cards();
         cards.randomize_cards();
         $('.card').off('transitionend', reset_card_primer);
     };
