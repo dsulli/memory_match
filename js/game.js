@@ -1,10 +1,16 @@
+/**
+ * Holds all game variables and functions
+ * @constructor
+ * @this {Game}
+ */
 
 function Game() {
     this.total_cards = 18;
     this.total_matches = this.total_cards / 2;
     this.max_inventory_size = 3;
+    var reset_card_count = 0;
 
-
+    /** Initializes the game. */
     this.init = function() {
         player.update_gold(0);
         player.update_hp(0);
@@ -12,12 +18,14 @@ function Game() {
         this.display_stats();
     };
 
+    /** Displays game stats. */
     this.display_stats = function() {
         $('.games-played .value').text(player.games_played);
         $('.attempts .value').text(player.attempts);
         $('.accuracy .value').text(player.accuracy + "%");
     };
 
+    /** Resets both game stats and player stats. */
     this.reset_stats = function() {
         player.attempts = 0;
         player.accuracy = 0;
@@ -33,6 +41,7 @@ function Game() {
         player.currentGold = 300;
     };
 
+    /** Flips over all cards and shows "Defeat" */
     this.game_over = function() {
         //cancel cards flipping over to show back
         clearTimeout(cards.card_flip_timer);
@@ -41,23 +50,11 @@ function Game() {
 
     };
 
-    //transitionend: event for when the animation ends
-    //when .card animation ends, call reset_card_primer
-    //do this for all 18 .cards
-    //when it goes through all 18 cards, animation is done
-    //remove/randomize cards
-    //stop looking for event reset_card_primer
-    //reset_card_count back to 18 for next time
-
-
-    var reset_card_count = 0;
-
+    /** Waits until all 18 cards are flipped back, then randomizes cards. */
     var reset_card_primer = function(){
-        console.log(reset_card_count);
         if(--reset_card_count > 0){
             return;
         }
-        console.log('animation done, changing cards');
 
         cards.remove_cards();
         cards.randomize_cards();
@@ -65,8 +62,8 @@ function Game() {
         $('.card').off('transitionend', reset_card_primer);
     };
 
+    /** Calls functions necessary to restart the game. */
     this.reset = function() {
-
         //increments number of games played
         player.games_played++;
 
@@ -77,8 +74,8 @@ function Game() {
         //if cards are currently animating
         if($('.card-flip').length) {
             reset_card_count = $('.card-flip').length;
-            //wait for all cards to be flipped back, then randomize cards
-            $('.card-flip').on('transitionend', reset_card_primer);
+            //wait until animation is over, then call function
+            $('.card').on('transitionend', reset_card_primer);
         }
         else {
             cards.remove_cards();
@@ -93,7 +90,7 @@ function Game() {
 
         player.update_gold(0);
         player.clear_inventory();
-        cards.canClick = true;
 
+        cards.canClick = true;
     };
 }

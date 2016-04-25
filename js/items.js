@@ -1,11 +1,24 @@
-function Item(cost, type, src, effect) {
-    this.cost = cost;
-    this.type = type;
-    this.src = src;
-    this.effect = effect;
-}
-
+/**
+ * Holds all item variables and functions
+ * @constructor
+ * @this {Item}
+ */
 function Items() {
+
+    /**
+     * Item
+     * @param {number} cost - cost of item
+     * @param {String} type - type of item (use immediately or store in inventory)
+     * @param {String} src - image source
+     * @param {function} effect - updates stats given by item
+     * @constructor
+     */
+    function Item(cost, type, src, effect) {
+        this.cost = cost;
+        this.type = type;
+        this.src = src;
+        this.effect = effect;
+    }
 
     var itemList = {
         'Health Potion': new Item(150, 'consume', 'images/items/item_hp.jpg', function() { player.update_hp(50); }),
@@ -16,6 +29,10 @@ function Items() {
         'Brawlers Gloves': new Item(500, 'passive', 'images/items/item_brawlersgloves.jpg', function() { player.critChance += .1; })
     };
 
+    /**
+     * Enables items if player can afford them and disables them if they cannot.
+     * TODO: Disable passive items when inventory is full
+     */
     this.enable_item = function() {
 
         $('.shop-item .item-slot').each(function() {
@@ -31,7 +48,12 @@ function Items() {
 
     };
 
-
+    /**
+     * Performs actions based upon which item was clicked.
+     * If type passive, item is stored in player's inventory.
+     * If type consume, item effect happens immediately.
+     * @param {jQuery} item - item in shop that has been clicked
+     */
     this.item_clicked = function(item) {
         var item_name = item.find('img').attr('alt');
         var item_bought = itemList[item_name];

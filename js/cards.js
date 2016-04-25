@@ -1,4 +1,8 @@
-
+/**
+ * Holds all card variables and functions
+ * @constructor
+ * @this {Cards}
+ */
 
 function Cards() {
 
@@ -7,19 +11,23 @@ function Cards() {
     this.canClick = true;
     this.card_flip_timer = null;
     var image_srcs = [
-        'images/card_annie.png',
-        'images/card_cait.png',
-        'images/card_ez.png',
-        'images/card_gnar.png',
-        'images/card_jinx.png',
-        'images/card_lulu.png',
-        'images/card_lux.png',
-        'images/card_mf.png',
-        'images/card_vi.png'
+        'images/cards/card_annie.png',
+        'images/cards/card_cait.png',
+        'images/cards/card_ez.png',
+        'images/cards/card_gnar.png',
+        'images/cards/card_jinx.png',
+        'images/cards/card_lulu.png',
+        'images/cards/card_lux.png',
+        'images/cards/card_mf.png',
+        'images/cards/card_vi.png'
     ];
 
 
-    //function for when first and second cards don't match, shows the backs of them again
+    /**
+     * Flips mismatched cards over to their backs.
+     * @param {jQuery} first - first card
+     * @param {jQuery} second - second card
+     */
     var show_back = function(first, second) {
         cards.canClick = false;
         cards.card_flip_timer = setTimeout(function(){
@@ -29,18 +37,22 @@ function Cards() {
             cards.canClick = true;
 
         }, 1250);
-
-
     };
 
-    //run after first and second cards are flipped, resets values
+    /** Resets first card and second card values */
     this.reset_cards = function() {
         first_card = null;
         second_card = null;
     };
 
+    /**
+     * Animates gold notification on top of second card.
+     * Updates gold, HP (if player has lifesteal), match counter, and accuracy.
+     * Checks whether all matches were made to display victory screen.
+     *
+     * @param {jQuery} second_card - card to append gold notification to
+     */
     var made_match = function(second_card){
-
         //gold animation
         var goldNotice = $('<div>').addClass('plus-gold').html('+300 <img src="images/coins.png" alt="gold icon">');
         $(goldNotice).animate({
@@ -59,15 +71,12 @@ function Cards() {
 
         }, 1000);
 
-
+        //update stats
         player.update_hp(player.lifeSteal);
         player.update_gold(300);
         player.match_counter++;
         //now that you've made a match, you can't divide by 0 anymore so we can now calculate accuracy
         player.set_accuracy();
-
-        //now start over
-        cards.reset_cards();
 
         //check if all cards are matched then display a "you win" message
         if(player.match_counter === game.total_matches) {
@@ -76,12 +85,14 @@ function Cards() {
 
     };
 
+    /**
+     * Performs functions based on which card was clicked.
+     * @param {jQuery} current - the card that the player clicked
+     */
     this.card_clicked = function(current) {
         //check if can click
         //check if the card is already flipped
         //then do nothing if either are true
-        console.log('clicked');
-
         if(this.canClick === false || current.hasClass('card-flip')) {
             return;
         }
@@ -99,8 +110,8 @@ function Cards() {
                 second_card = find_card(current);
                 player.attempts++;
                 second_card.addClass('card-flip');
-
-                made_match();
+                made_match(second_card);
+                cards.reset_cards();
             }
 
         }
@@ -117,13 +128,14 @@ function Cards() {
             }
             else { //cards don't match
                 show_back(first_card, second_card);
-                cards.reset_cards();
                 if(player.match_counter > 0) {
                     player.set_accuracy();
                 }
                 player.update_gold(player.passiveGold);
                 player.update_hp(-100 + (100 * player.armor));
             }
+            cards.reset_cards();
+
 
             //refresh stats after every attempt
         }
@@ -131,7 +143,11 @@ function Cards() {
 
     };
 
-    //for crit chance only
+    /**
+     * Finds the matching card of the first card clicked
+     * @param {jQuery} card - the first card the player clicked
+     * @returns {jQuery} - the matching card
+     */
     var find_card = function(card) {
 
         var first = card.find('.front img').attr('src');
@@ -146,6 +162,7 @@ function Cards() {
         }
     };
 
+    /** Randomizes card order and places them inside the game area */
     this.randomize_cards = function() {
         var card_images = image_srcs.concat(image_srcs);
 
@@ -162,7 +179,7 @@ function Cards() {
         for(var j = 0; j < game.total_cards; j++) {
             console.log('card ' + j);
             var card = $('<div>').addClass('card');
-            var back = $('<div>').addClass('back').html('<img src="images/card-back-helmet.png">');
+            var back = $('<div>').addClass('back').html('<img src="images/cards/card-back-helmet.png">');
             var front = $('<div>').addClass('front').html('<img src="' + imagesCopy[j] + '"></div>');
             card.append(back);
             card.append(front);
@@ -178,6 +195,7 @@ function Cards() {
 
     };
 
+    /** Removes all cards from the game area */
     this.remove_cards = function() {
         $('.card').remove();
     };
