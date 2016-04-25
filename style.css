@@ -3,11 +3,7 @@
 }
 
 body {
-    background-color: #000;
-    background-image: url('images/summoners_rift.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-
+    background: url('images/summoners_rift.jpg') center / cover no-repeat #000;
 }
 
 p, li, a, span {
@@ -24,6 +20,8 @@ p, li, a, span {
     max-width: 1200px;
     margin: auto;
 }
+
+/* -- HEADER -- */
 
 header {
     width: 100%;
@@ -84,10 +82,12 @@ nav li a:hover {
     cursor: pointer;
 }
 
+/* -- SIDE BARS -- */
+
+
 .stats, .shop {
     width: 22%;
     height: 85vh;
-
 }
 
 .stats {
@@ -98,7 +98,7 @@ nav li a:hover {
     float: right;
 }
 
-.stats-container, .shop-container, .items-container{
+.stats-container, .shop-container{
     border: 27px solid;
     -moz-border-image: url(images/border-img.jpg) 27;
     -webkit-border-image: url(images/border-img.jpg) 27;
@@ -110,14 +110,11 @@ nav li a:hover {
     color: #AA9743;
     margin: 5px 10px 10px 10px;
     background-color: rgba(15, 35, 34, .9);
-}
-
-.stats-container, .shop-container {
     height: 400px;
     opacity: .9;
 }
 
-.stats-header, .shop-header, .items-header {
+.stats-header, .shop-header {
     margin: 0 0 15px 0;
     background-color: rgba(30, 110, 116, .3);
     padding: 6px;
@@ -132,6 +129,9 @@ h2 {
     text-align: center;
     color: #e4c96a;
 }
+
+/* -- STATS -- */
+
 
 .stats ul {
     list-style: none;
@@ -206,7 +206,8 @@ h2 {
 }
 
 
-/* items */
+/* -- SHOP -- */
+
 
 .row {
     text-align: center;
@@ -317,6 +318,7 @@ h2 {
     margin-top: 10px;
 }
 
+/* -- GAME AREA / CARDS -- */
 
 #game-area {
     width: 56%;
@@ -332,7 +334,6 @@ h2 {
     -ms-perspective: 1000px;
     perspective: 1000px;
 }
-
 
 .card {
     position: relative;
@@ -355,8 +356,6 @@ h2 {
     -moz-backface-visibility: hidden;
     -ms-backface-visibility: hidden;
     backface-visibility: hidden;
-
-
 }
 
 .front {
@@ -385,7 +384,33 @@ h2 {
     height: 100%;
 }
 
+.plus-gold {
+    font-family: 'Palanquin', sans-serif;
+    font-weight: 400;
+    font-size: .8em;
+    color: #fae497;
+    -webkit-text-shadow: 0 0 3px #000;
+    -moz-text-shadow: 0 0 3px #000;
+    -ms-text-shadow: 0 0 3px #000;
+    -o-text-shadow: 0 0 3px #000;
+    text-shadow: 0 0 3px #000;
+    position: absolute;
+    top: -1em;
+    left: 50%;
+    -webkit-transform: translateX(-50%) rotateY(180deg);
+    -moz-transform: translateX(-50%) rotateY(180deg);
+    -ms-transform: translateX(-50%) rotateY(180deg);
+    -o-transform: translateX(-50%) rotateY(180deg);
+    transform: translateX(-50%) rotateY(180deg);
+    opacity: 0;
+}
 
+.plus-gold img {
+    margin-right: 5px;
+    width: 1em;
+}
+
+/* -- GAME OVER / WIN -- */
 
 #victory, #defeat {
     background: radial-gradient(rgb(74, 74, 67),  rgb(41, 41, 27));
@@ -448,31 +473,7 @@ h2 {
     font-size: 1.2em;
 }
 
-.plus-gold {
-    font-family: 'Palanquin', sans-serif;
-    font-weight: 400;
-    font-size: .8em;
-    color: #fae497;
-    -webkit-text-shadow: 0 0 3px #000;
-    -moz-text-shadow: 0 0 3px #000;
-    -ms-text-shadow: 0 0 3px #000;
-    -o-text-shadow: 0 0 3px #000;
-    text-shadow: 0 0 3px #000;
-    position: absolute;
-    top: -1em;
-    left: 50%;
-    -webkit-transform: translateX(-50%) rotateY(180deg);
-    -moz-transform: translateX(-50%) rotateY(180deg);
-    -ms-transform: translateX(-50%) rotateY(180deg);
-    -o-transform: translateX(-50%) rotateY(180deg);
-    transform: translateX(-50%) rotateY(180deg);
-    opacity: 0;
-}
-
-.plus-gold img {
-    margin-right: 5px;
-    width: 1em;
-}
+/* -- MODALS -- */
 
 .overlay {
     position: absolute;
@@ -624,6 +625,8 @@ h2 {
     position: absolute;
     right: 15px;
 }
+
+/* -- MEDIA QUERIES -- */
 
 @media screen and (max-width: 1220px) {
 
