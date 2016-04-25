@@ -17,84 +17,41 @@ function Items() {
     };
 
     this.enable_item = function() {
-       /* var item;
-        for(var i = 0; i < items.length; i++) {
-            for(var j = 0; j < items.length; j++) {
-                if($('.shop-item .item-slot').eq(i).find('img').attr('alt') === items[j].name) {
-                    item = items[j];
-                    if(!can_afford(item.cost)) {
-                        $('.shop-item .item-slot').eq(i).addClass('disabled');
-                    }
-                    else {
-                        $('.shop-item .item-slot').eq(i).removeClass('disabled');
-                    }
-                }
+
+        $('.shop-item .item-slot').each(function() {
+            var item = itemList[$(this).find('img').attr('alt')];
+            if(!player.can_afford(item.cost)) {
+                $(this).addClass('disabled');
             }
+            else {
+                $(this).removeClass('disabled');
+            }
+        });
 
-        }*/
-
-        for(var listItem in itemList) {
-            $('.shop-item .item-slot').each(function() {
-                if($(this).find('img').attr('alt') === listItem) {
-                    if(!player.can_afford(itemList[listItem].cost)) {
-                        $(this).addClass('disabled');
-                    }
-                    else {
-                        $(this).removeClass('disabled');
-                    }
-                }
-            })
-        }
 
     };
 
 
     this.item_clicked = function(item) {
         var item_name = item.find('img').attr('alt');
-        var item_bought;
+        var item_bought = itemList[item_name];
 
-        console.log("item was clicked");
-
-        //search for that item's info
-        /*for(var i = 0; i < items.length; i++) {
-            if(item.find('img').attr('alt') == items[i].name) {
-                item_bought = items[i];
-            }
-        }*/
-
-        for(var listItem in itemList) {
-            if(item_name == listItem) {
-                item_bought = itemList[listItem];
-            }
-        }
-
-        console.log(item_bought.cost);
-        if(item_name != 'Health Potion' && player.inventoryCount > 3) {
-            return;
-        }
-        //Check if item can be bought
         if(player.can_afford(item_bought.cost)) {
 
-            //check if item is a consumable, then use immediately
-            if(item_bought.type == "consume"){
+            //check if item is a passive and if can be put in inventory
+            if(item_bought.type == "passive" && player.inventoryCount < game.max_inventory_size){
+                player.update_inventory(item_bought, item_name);
                 item_bought.effect();
-            }
+                player.update_gold(-(item_bought.cost));
 
-            //check if item is a passive item, then put into inventory
-            if(item_bought.type == "passive") {
-                player.update_inventory(item_bought);
+            }
+            else if(item_bought.type == "consume") {
                 item_bought.effect();
+                player.update_gold(-(item_bought.cost));
             }
-
-            //subtract item cost from current gold
-            player.update_gold(-(item_bought.cost));
-            if(item_bought.name != 'Health Potion') {
-                player.inventoryCount++;
-            }
-
         }
 
-    }
+    };
 
 
 }

@@ -13,34 +13,41 @@ function Player() {
     this.passiveGold = 0;
     this.inventoryCount = 0;
 
+
+
+
     this.update_hp = function(val) {
+
+        var hp_text = $('#hp-count');
+        var hp_bar = $('#hp-bar');
+
+        //if current HP goes to 0 or below, it's game over
         if(this.currentHP + val <= 0) {
-            $('#hp-count').html(0 + ' / ' + this.baseHP);
-            $('#hp-bar').css('width', 0);
+            hp_text.text(0 + ' / ' + this.baseHP);
+            hp_bar.css('width', 0);
             game.game_over();
             return;
         }
+        //prevents hp from going above max
         else if (this.currentHP + val > this.baseHP) {
-            $('#hp-count').html(this.baseHP + ' / ' + this.baseHP);
+            hp_text.text(this.baseHP + ' / ' + this.baseHP);
             return;
         }
         else {
             this.currentHP += val;
-            $('#hp-count').html(this.currentHP + ' / ' + this.baseHP);
+            hp_text.text(this.currentHP + ' / ' + this.baseHP);
         }
-        $('#hp-bar').css('width', this.currentHP/this.baseHP * 100 + '%');
+
+        hp_bar.css('width', this.currentHP/this.baseHP * 100 + '%');
 
     };
 
     this.update_gold = function (val) {
-        if(this.currentGold + val < 0) {
-            return;
-        }
 
         this.currentGold += val;
         $('#total-gold').html(this.currentGold);
 
-
+        //animate the total player gold div
         if(val !== 0) {
             $('.gold').addClass('gold-active');
             setTimeout(function(){
@@ -56,25 +63,14 @@ function Player() {
         player.accuracy = Math.round((player.match_counter / player.attempts) * 100);
     };
 
-    this.update_inventory = function(item) {
-    /*
-     loop through item slots
-     check if empty
-     if empty, put purchased item into slot
-     if not empty, move on
-     if there are no empty slots, do nothing, don't buy item
-    */
+    this.update_inventory = function(item, name) {
+        $('.empty-slot').eq(0).append('<img src="' + item.src + '" alt="' + name + '"></div>').removeClass('empty-slot');
+        player.inventoryCount++;
 
-         for(var i = 0; i < 3; i++) {
-             if($('#inventory .item-slot:nth-child(' + (i + 1) + ')').html() == '') {
-                 $('#inventory .item-slot:nth-child(' + (i + 1) + ')').append('<img src="' + item.src + '"></div>');
-                 return;
-             }
-         }
-     };
+    };
 
     this.clear_inventory = function() {
-        $('#inventory .item-slot').empty();
+        $('.item-slot').empty();
         this.inventoryCount = 0;
     };
 

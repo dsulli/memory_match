@@ -6,11 +6,22 @@ function Cards() {
     var second_card = null;
     this.canClick = true;
     this.card_flip_timer = null;
+    var image_srcs = [
+        'images/card_annie.png',
+        'images/card_cait.png',
+        'images/card_ez.png',
+        'images/card_gnar.png',
+        'images/card_jinx.png',
+        'images/card_lulu.png',
+        'images/card_lux.png',
+        'images/card_mf.png',
+        'images/card_vi.png'
+    ];
 
 
     //function for when first and second cards don't match, shows the backs of them again
-    var showBack = function(first, second) {
-        canClick = false;
+    var show_back = function(first, second) {
+        cards.canClick = false;
         cards.card_flip_timer = setTimeout(function(){
             cards.card_flip_timer = null;
             first.removeClass('card-flip');
@@ -29,9 +40,8 @@ function Cards() {
     };
 
     var made_match = function(second_card){
-        //second_card.find('.front').css('backface-visibility', 'visible');
 
-
+        //gold animation
         var goldNotice = $('<div>').addClass('plus-gold').html('+300 <img src="images/coins.png" alt="gold icon">');
         $(goldNotice).animate({
             top: '-20px',
@@ -43,7 +53,9 @@ function Cards() {
                 opacity: '0',
                 top: '10px'
             }, function(){
-                $(goldNotice).remove(); });
+                $(goldNotice).remove();
+               }
+            );
 
         }, 1000);
 
@@ -80,6 +92,7 @@ function Cards() {
         if(first_card == null) {
             first_card = current;
 
+            //crit chance check
             if(Math.random() <= player.critChance) {
 
                 second_card = find_card(current);
@@ -102,7 +115,7 @@ function Cards() {
                 made_match(second_card);
             }
             else { //cards don't match
-                showBack(first_card, second_card);
+                show_back(first_card, second_card);
                 reset_cards();
                 if(player.match_counter > 0) {
                     player.set_accuracy();
@@ -117,57 +130,43 @@ function Cards() {
 
     };
 
+    //for crit chance only
     var find_card = function(card) {
 
         var first = card.find('.front img').attr('src');
         console.log(card.index());
-        for(var i = 0; i < 18; i++) {
-            if($('.card').eq(i).find('.front img').attr('src') == first &&
-                $('.card').eq(i).index() !== card.index()) {
+        for(var i = 0; i < game.total_cards; i++) {
+            var current_card = $('.card').eq(i);
+            if(current_card.find('.front img').attr('src') == first &&
+                current_card.index() !== card.index()) {
                 console.log('found');
-                return $('.card:nth-child(' + (i+1) + ')');
+                return current_card;
             }
         }
     };
 
     this.randomize_cards = function() {
-        var images = [
-            'images/card_annie.png',
-            'images/card_cait.png',
-            'images/card_ez.png',
-            'images/card_gnar.png',
-            'images/card_jinx.png',
-            'images/card_lulu.png',
-            'images/card_lux.png',
-            'images/card_mf.png',
-            'images/card_vi.png',
+        var card_images = image_srcs.concat(image_srcs);
 
-            'images/card_annie.png',
-            'images/card_cait.png',
-            'images/card_ez.png',
-            'images/card_gnar.png',
-            'images/card_jinx.png',
-            'images/card_lulu.png',
-            'images/card_lux.png',
-            'images/card_mf.png',
-            'images/card_vi.png'
-        ];
-        var slots = images.length;
+        //put image srcs into a copy array in random order
+        var slots = card_images.length;
         var imagesCopy = [];
         for (var i = 0; i < slots; i++) {
-            var randomNum = Math.floor((Math.random() * images.length));
-            imagesCopy.push(images.splice(randomNum, 1));
+            var randomNum = Math.floor((Math.random() * card_images.length));
+            imagesCopy.push(card_images.splice(randomNum, 1));
 
         }
 
-        for (var j = 0; j < imagesCopy.length; j++) {
-            $('#game-area .card:nth-child(' + (j + 1) + ')').append('<div class="front"><img src="' + imagesCopy[j] + '"></div>');
-        }
-        //return imagesCopy;
+        //append front faces to cards
+        var j = 0;
+
+        $('.card').each(function(){
+           $(this).append('<div class="front"><img src="' + imagesCopy[j++] + '"></div>');
+        });
 
     };
 
-    this.remove_cards = function() {
+    this.remove_card_fronts = function() {
         $('.front').remove();
     };
 

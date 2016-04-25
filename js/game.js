@@ -1,6 +1,9 @@
 
 function Game() {
-    this.total_matches = 9; //change this when you add more cards
+    this.total_cards = 18;
+    this.total_matches = this.total_cards / 2;
+    this.max_inventory_size = 3;
+
 
     this.init = function() {
         player.update_gold(0);
@@ -26,7 +29,6 @@ function Game() {
         //cancel cards flipping over to show back
         clearTimeout(cards.card_flip_timer);
         $('#defeat').fadeIn();
-
         $('.card').addClass('card-flip');
 
     };
@@ -47,8 +49,8 @@ function Game() {
         if(--reset_card_count>0){
             return;
         }
-        console.log('animation done, changing cards')
-        cards.remove_cards();
+        console.log('animation done, changing cards');
+        cards.remove_card_fronts();
         cards.randomize_cards();
         $('.card').off('transitionend', reset_card_primer);
     };
@@ -57,11 +59,11 @@ function Game() {
         //increments number of games played
         player.games_played++;
         this.reset_stats(); //set  game stats to 0
-        this.display_stats(); //show that they have been set to 0
         //wait for all cards to be flipped back, then randomize cards
         reset_card_count = $('.card-flip').length;
         $('.card').on('transitionend', reset_card_primer);
         $('.card').removeClass('card-flip'); //flip all cards back;
+        $('.item-slot').addClass('empty-slot');
         $('#victory').fadeOut();
         $('#defeat').fadeOut();
         cards.canClick = true;
