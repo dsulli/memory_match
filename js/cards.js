@@ -34,7 +34,7 @@ function Cards() {
     };
 
     //run after first and second cards are flipped, resets values
-    var reset_cards = function() {
+    this.reset_cards = function() {
         first_card = null;
         second_card = null;
     };
@@ -67,7 +67,7 @@ function Cards() {
         player.set_accuracy();
 
         //now start over
-        reset_cards();
+        cards.reset_cards();
 
         //check if all cards are matched then display a "you win" message
         if(player.match_counter === game.total_matches) {
@@ -117,7 +117,7 @@ function Cards() {
             }
             else { //cards don't match
                 show_back(first_card, second_card);
-                reset_cards();
+                cards.reset_cards();
                 if(player.match_counter > 0) {
                     player.set_accuracy();
                 }
@@ -158,7 +158,9 @@ function Cards() {
 
         }
 
+        //append whole card elements to game area
         for(var j = 0; j < game.total_cards; j++) {
+            console.log('card ' + j);
             var card = $('<div>').addClass('card');
             var back = $('<div>').addClass('back').html('<img src="images/card-back-helmet.png">');
             var front = $('<div>').addClass('front').html('<img src="' + imagesCopy[j] + '"></div>');
@@ -167,7 +169,7 @@ function Cards() {
             $('#game-area').append(card);
         }
 
-        //append front faces to cards
+        //append front faces only to cards
         //var j = 0;
         //
         //$('.card').each(function(){

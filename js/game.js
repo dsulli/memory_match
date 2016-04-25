@@ -22,7 +22,15 @@ function Game() {
         player.attempts = 0;
         player.accuracy = 0;
         player.match_counter = 0;
-        this.display_stats();
+        player.currentHP = 1000;
+        player.baseHP = 1000;
+        player.critChance = 0;
+        player.armor = 0;
+        player.lifeSteal = 0;
+        player.passiveGold = 0;
+        $('#hp-count').html(player.currentHP + ' / ' + player.baseHP);
+        $('#hp-bar').css('width', player.currentHP/player.baseHP * 100 + '%');
+        player.currentGold = 300;
     };
 
     this.game_over = function() {
@@ -46,36 +54,46 @@ function Game() {
 
     var reset_card_primer = function(){
         console.log(reset_card_count);
-        if(--reset_card_count>0){
+        if(--reset_card_count > 0){
             return;
         }
         console.log('animation done, changing cards');
+
         cards.remove_cards();
         cards.randomize_cards();
+
         $('.card').off('transitionend', reset_card_primer);
     };
 
     this.reset = function() {
+
         //increments number of games played
         player.games_played++;
+
         this.reset_stats(); //set  game stats to 0
-        //wait for all cards to be flipped back, then randomize cards
-        reset_card_count = $('.card-flip').length;
-        $('.card').on('transitionend', reset_card_primer);
-        $('.card').removeClass('card-flip'); //flip all cards back;
+        this.display_stats();
+        cards.reset_cards(); //reset first and second cards to null
+
+        //if cards are currently animating
+        if($('.card-flip').length) {
+            reset_card_count = $('.card-flip').length;
+            //wait for all cards to be flipped back, then randomize cards
+            $('.card-flip').on('transitionend', reset_card_primer);
+        }
+        else {
+            cards.remove_cards();
+            cards.randomize_cards();
+        }
+
+        $('.card').removeClass('card-flip'); //flip all cards back
+
+        //remove game over screens
         $('#victory').fadeOut();
         $('#defeat').fadeOut();
-        cards.canClick = true;
-        player.currentHP = 1000;
-        player.baseHP = 1000;
-        player.critChance = 0;
-        player.armor = 0;
-        player.lifeSteal = 0;
-        player.passiveGold = 0;
-        $('#hp-count').html(player.currentHP + ' / ' + player.baseHP);
-        $('#hp-bar').css('width', player.currentHP/player.baseHP * 100 + '%');
-        player.currentGold = 300;
+
         player.update_gold(0);
         player.clear_inventory();
+        cards.canClick = true;
+
     };
 }
